@@ -4,14 +4,18 @@ import pandas as pd
 # print(st.__file__)
 
 # data sources
-aq_mostrecent = "data/real-time-fijnstof-monitoring.csv" 
+aq_mostrecent = "./data/real-time-fijnstof-monitoring.csv" 
 
 
 # find MAX, MIN in the most recent AQ data
 def aq_maxmin():
-    dfaq = pd.read_csv(aq_mostrecent,sep=";")
-    dfaq = dfaq[["PM1","PM2.5","PM10","geopoint"]]
-    return (dfaq["PM1"].max())
+    try:
+        dfaq = pd.read_csv(aq_mostrecent,sep=";")
+        dfaq = dfaq[["PM1","PM2.5","PM10","geopoint"]]
+        return (dfaq["PM1"].max())
+    except:
+        return "ERROR: data problem"
+
 
 
 # MAIN
