@@ -1,0 +1,43 @@
+﻿ID;Name;Lat;Lon;Description;Observables/0;Observables/1;Observables/2;Observables/3;Observables/4;URL;geopoint
+543;I04;51.491448;5.439148;Eindhoven, Finisterelaan;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.491448, 5.439148
+545;I07;51.456811;5.4383;Eindhoven, Oirschotsedijk;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.456811, 5.4383
+542;I13;51.481518;5.519937;Best, Kapelweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.481518, 5.519937
+532;I18;51.569607;5.311352;Eindhoven, Beukenlaan;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.569607, 5.311352
+526;I28;51.449157;5.456938;Eindhoven, Beukenlaan Klokgebouw;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.449157, 5.456938
+527;I36;51.438597;5.481455;Eindhoven, Vestdijk;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.438597, 5.481455
+528;I37;51.468568;5.472333;Eindhoven, Genovevalaan;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.468568, 5.472333
+529;I39;51.43897;5.464986;Eindhoven, Willemstraat;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.43897, 5.464986
+530;I40;51.452775;5.485086;Eindhoven, Kennedylaan;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.452775, 5.485086
+563;I44;51.356476;5.635831;Heeze-Leende, Ronde Bleek;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.356476, 5.635831
+567;I48;51.465908;5.678495;Helmond, Vossenbeemd;PM1;PM2.5;PM10;-;-;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.465908, 5.678495
+577;I58;51.490372;5.394095;Best, Looierstraat;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.490372, 5.394095
+521;I02;51.437895;5.358142;Eindhoven, Scherpenering;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.437895, 5.358142
+542;I03;51.510759;5.360641;Best, Kapelweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.510759, 5.360641
+553;I05;51.402491;5.351442;Eersel, Zandoerleseweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.402491, 5.351442
+533;I09;51.442201;5.484434;Eindhoven, Stationsweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.442201, 5.484434
+534;I11;51.445382;5.485405;Eindhoven, prof dr Dorgelolaan;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.445382, 5.485405
+535;I12;51.441478;5.471369;Eindhoven, Mathildelaan;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.441478, 5.471369
+536;I14;51.468103;5.390124;Eindhoven, Landsardseweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.468103, 5.390124
+522;I17;51.413608;5.470724;Eindhoven, Genneperweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.413608, 5.470724
+525;I25;51.454552;5.388746;Einhoven, Luchthavenweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.454552, 5.388746
+551;I30;51.437431;5.451543;Eindhoven, Botenlaan;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.437431, 5.451543
+540;I32;51.479715;5.475093;Eindhoven, Maaseikstraat;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.479715, 5.475093
+561;I42;51.592301;5.78124;Gemert-Bakel, Keizersven;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.592301, 5.78124
+566;I47;51.476849;5.261637;Middelbeers, hoek Neereindsweg  - Baesterdijk;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.476849, 5.261637
+570;I51;51.469257;5.634817;Helmond, Mierloseweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.469257, 5.634817
+575;I56;51.416489;5.126502;Reusel-de Mierden, Beekakkersweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.416489, 5.126502
+532;I08;51.446464;5.448331;Eindhoven, Beukenlaan;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.446464, 5.448331
+554;I10;51.370634;5.156497;Reusel de Mierden, Mierdseweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.370634, 5.156497
+556;I16;51.346805;5.388728;Bergeijk, Dorpsstraat;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.346805, 5.388728
+547;I19;51.433199;5.519749;Eindhoven, Kanaaldijk;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.433199, 5.519749
+549;I22;51.437173;5.423313;Eindhoven, Meerhovensedreef;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.437173, 5.423313
+524;I23;51.458435;5.404972;Eindhoven, Anthony Fokkerweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.458435, 5.404972
+537;I24;51.444538;5.47874;Eindhoven, Fellenoord;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.444538, 5.47874
+539;I29;51.435237;5.479904;Eindhoven, Wal;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.435237, 5.479904
+558;I33;51.52953;5.471856;Son en Breugel, Sonniuswijk;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.52953, 5.471856
+560;I41;51.432001;5.627201;Geldrop-Mierlo, Voortje;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.432001, 5.627201
+562;I43;51.530464;5.28456;Oirschot, Krukkerd;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.530464, 5.28456
+564;I45;51.583522;5.548012;Meierijstad, Zonveldstraat;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.583522, 5.548012
+565;I46;51.509185;5.378086;Best, Oirschotseweg/kruising Ringweg;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.509185, 5.378086
+568;I49;51.47354;5.653042;Helmond, Kanaaldijk Zuid West;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.47354, 5.653042
+571;I52;51.477652;5.656776;Helmond, Kasteel-Traverse;Lat;Lon;PM1;PM2.5;PM10;https://api.dustmonitoring.nl/v1/project(30)/locations?;51.477652, 5.656776
