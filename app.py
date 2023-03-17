@@ -30,7 +30,7 @@ def aq_maxmin(): #TODO
 
 # MAIN
 def main():
-    st.set_page_config(page_title='EDS' ,layout="wide",page_icon='')
+    st.set_page_config(page_title='EDS' ,page_icon='')
     st.title("Eindhoven Data Stories")
     
 
@@ -41,38 +41,56 @@ def main():
 # -------------------------------------
     # Daily news: Air quality
     st.subheader("Air quality today")
+    st.markdown('by _ChatGPT_, data: <a href="https://api.dustmonitoring.nl/">TNO</a> ',
+                unsafe_allow_html=True)
     val_max,val_min,where_max,where_min = aq_maxmin()
-    st.write("The highest air pollution measured so far today was in {0} at 9:11, \n\
+    st.write("The highest air pollution measured so far today was in <b>{0}</b> at 9:11, \n\
              most probably due to traffic.\n\
-             The best air quality was in {1}, making this a 22 days -streak."
-             .format(where_max, where_min)) #TODO add some emojis :-) 
+             The best air quality was in {1} - this is a 22 days -streak!"
+             .format(where_max, where_min),unsafe_allow_html=True) #TODO add some emojis :-) 
     
+    st.write("Check also this real-time visualization of the AQ in Eindhoven.")
 # -------------------------------------
     # Daily news: Biodiversity challenge
     bc_soort = "Bonte dennenschildwants" # TODO: compute from the data, make a static CSV for the whole year .. 
     st.subheader("Challenge: find the "+ bc_soort)
-    st.image(Image.open("./images/47123550.jpg"))
+    st.image(Image.open("./images/47123550.jpg"),width=200)
     st.write("In the last 3 years on this day, this endangered species has been seen in the Eindhoven area.\
              Read more about this observation <a href=\"{}\">here</a>."
-             .format("https://waarneming.nl/observation/235848374/") )
-    st.write("Can you find it again?") 
-    with st.expander("Other endangered species found in previous years on this day:"):
+             .format("https://waarneming.nl/observation/235848374/"),unsafe_allow_html=True)
+    st.markdown("**Can you find it again?**") 
+    with st.expander("Or check other endangered species found in previous years on this day:"):
         st.write("Loading..") #TODO
 
     #TODO: talk to waarneming.nl
 
 # -------------------------------------
+    # Explore: real-time interactive AQ heatmap
+    st.subheader("Explore the Eindhoven air")
+    st.markdown('by _Vlad Savu_, data: <a href="https://api.dustmonitoring.nl/">TNO</a> ',
+                unsafe_allow_html=True)
+    st.write ("A real-time interactive heatmap showing the air quality index..")
+    st.write ("TO DO")
+
+# -------------------------------------
+    # Story: what makes people happy in Ehv
+    st.subheader("The happiest")
+    st.markdown('by _Frits,Frits,Frits_, data: Open Data Eindhoven',
+                unsafe_allow_html=True)
+    st.write ("An article about where the happiest people live in Eindhoven and what seems to influence this most.")
+    st.write ("TO DO")
+
+# -------------------------------------
     st.subheader("Your question")
-    st.write("If you have a question about (life in) Eindhoven that could be \
-             investigated using data, write it here.")
     with st.form(key="question"):
-        ta_question = st.text_area("... ?")
+        ta_question = st.text_area("If you have a question about (life in) Eindhoven that could be \
+             investigated using data, write it here.")
         question = st.form_submit_button("Ask EDS")
         #TODO: add name, email fields, check, save question to database
     with st.expander("Already asked.."):
         st.write("Loading..") #TODO
 
-    st.info("Made and maintained @ Fontys ICT")
+    st.write("Made and maintained @ Fontys ICT")
 
 if __name__ == '__main__':
     main()
