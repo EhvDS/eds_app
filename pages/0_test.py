@@ -2,12 +2,12 @@ import streamlit as st
 import time
 import numpy as np
 
-st.set_page_config(page_title="gapminder", page_icon="📈")
+st.set_page_config(page_title="0_test", page_icon="📈")
 
-st.markdown("# mind the gap in eindhoven")
-st.sidebar.header("gapminder")
+st.markdown("# Test")
+st.sidebar.header("TestChart")
 st.write(
-    """To be filled in..."""
+    """Just a random example chart"""
 )
 
 progress_bar = st.sidebar.progress(0)
