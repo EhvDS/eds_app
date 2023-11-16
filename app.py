@@ -11,7 +11,7 @@ def main():
     st.title("Eindhoven Data Stories")
     st.sidebar.success("Select a demo above.")
 
-    st.markdown("Made and maintained @ Fontys ICT")
+    st.markdown("Made and maintained @ Fontys ICT op donderdagavond.")
 
 if __name__ == '__main__':
     main()
