@@ -3,7 +3,7 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
-df = pd.read_csv('../data/trendy_eindhoven_data_Eniko.csv')
+df = pd.read_csv('./data/trendy_eindhoven_data_Eniko.csv')
 st.write("# Explore trends in Eindhoven")
 
 variable = st.selectbox("Select a variable:", ['Aantal woningen', 'Inwoners', 'Gemiddeld elektriciteitsverbruik totaal', 'Verplaatst zich meestal per fiets %',
