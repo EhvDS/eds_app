@@ -10,13 +10,13 @@ df_images = pd.read_csv("./data/kevin_geoguessr_images.csv", index_col=0)
 if 'score' not in st.session_state: # number of correct guesses
     st.session_state.score = 0
 
-if 'image_index' not in st.session_state: # image_index controls the image that is shown
-    st.session_state.image_index = random.randint(0, len(df_images))
+if 'current_image' not in st.session_state:
+    st.session_state.current_image = df_images.sample()
 
 if 'images_seen' not in st.session_state: # keep track of images seen this round to avoid duplicates
     st.session_state.images_seen = []
 
-if 'current_round' not in st.session_state: # image_index controls the image that is shown
+if 'current_round' not in st.session_state:
     st.session_state.current_round = 1
 
 n_rounds = 5
@@ -24,17 +24,20 @@ game_done = st.session_state.current_round > n_rounds
 
 def cycle_image():
     # Randomly select new image, avoid images already shown this game
-    new_index = random.randint(0, len(df_images))
+    new_image = df_images.sample()
+    
     print(st.session_state.images_seen)
-    while new_index in st.session_state.images_seen:
-        new_index = random.randint(0, len(df_images))
+    url_check = new_image['URL'].tolist()[0]
+    while url_check in st.session_state.images_seen:
+        new_image = df_images.sample()
+        url_check = new_image['URL'].tolist()[0]
 
-    st.session_state.images_seen.append(new_index)
-    st.session_state.image_index = new_index
+    st.session_state.images_seen.append(url_check)
+    st.session_state.current_image = new_image
 
-selected_image = df_images.iloc[[st.session_state.image_index]]['URL']
+selected_image = st.session_state.current_image['URL']
 selected_image = selected_image.tolist()[0]
-correct_neighbourhood = df_images.iloc[[st.session_state.image_index]]['NbName']
+correct_neighbourhood = st.session_state.current_image['NbName']
 correct_neighbourhood = correct_neighbourhood.tolist()[0]
 
 # Header section
@@ -81,7 +84,6 @@ if not game_done:
 
 # Game Over display
 def reset_game():
-    st.session_state.image_index = 0
     st.session_state.score = 0
     st.session_state.current_round = 1
     st.session_state.images_seen = []
