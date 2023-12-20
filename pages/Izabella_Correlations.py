@@ -23,18 +23,18 @@ from scipy import stats
 st.write('# Correlations in Eindhoven')
 
 st.caption('# What is correlation?')
-st.text('Correlation coefficients quantify the association between variables or features of a dataset.')
+st.markdown('Correlation coefficients quantify the association between variables or features of a dataset.')
 
 st.image('https://files.realpython.com/media/py-corr-1.d13ed60a9b91.png')
 
-st.text('Each of these plots shows one of three different forms of correlation:')
-st.text('1. Negative correlation (red dots): In the plot on the left, the y values tend to decrease as the x values increase. This shows strong negative correlation, which occurs when large values of one feature correspond to small values of the other, and vice versa.')
-st.text('2. Weak or no correlation (green dots): The plot in the middle shows no obvious trend. This is a form of weak correlation, which occurs when an association between two features is not obvious or is hardly observable.')
-st.text('3. Positive correlation (blue dots): In the plot on the right, the y values tend to increase as the x values increase. This illustrates strong positive correlation, which occurs when large values of one feature correspond to large values of the other, and vice versa.')
+st.markdown('Each of these plots shows one of three different forms of correlation:')
+st.markdown('1. Negative correlation (red dots): In the plot on the left, the y values tend to decrease as the x values increase. This shows strong negative correlation, which occurs when large values of one feature correspond to small values of the other, and vice versa.')
+st.markdown('2. Weak or no correlation (green dots): The plot in the middle shows no obvious trend. This is a form of weak correlation, which occurs when an association between two features is not obvious or is hardly observable.')
+st.markdown('3. Positive correlation (blue dots): In the plot on the right, the y values tend to increase as the x values increase. This illustrates strong positive correlation, which occurs when large values of one feature correspond to large values of the other, and vice versa.')
 
 df = pd.read_csv('./data/mostrecent_data_Izabella.csv')
 
-st.text('Down below, you can find heatmap of all correlations. To see better, use zoom function on the plot.')
+st.markdown('Down below, you can find heatmap of all correlations. To see better, use zoom function on the plot.')
 
 cols = ['number of residents', 'ScoreDiversity', 'NumberHouseholds',
        'AvgHouseValue', 'PctComplainsAQ', 'PctComplainsNoise',
@@ -52,7 +52,8 @@ fig = px.imshow(cm, text_auto = True,
                 color_continuous_scale = 'RdYlBu', 
                 x = df.columns, 
                 y = df.columns, 
-                aspect="auto")
+                aspect="auto",
+                title="Correlation Matrix")
 
 # Plot!
 st.plotly_chart(fig)
@@ -62,7 +63,7 @@ st.subheader('Correlation between "number of residents" and "number of household
 
 code = df['number of residents'].corr(df['NumberHouseholds']).round(decimals=2)
 st.text(code)
-st.text('Here we have a correlation 0.96, hence I am going to show it.')
+st.markdown('Here we have a correlation 0.96, hence I am going to show it.')
 
 fig = px.scatter(df,
 x="number of residents",
@@ -72,7 +73,7 @@ trendline_color_override="red",
 title="Number of Residents VS Number Households")
 # Plot!
 st.plotly_chart(fig)
-st.text('In most cases, the number of residents in an area is closely related to the number of households. Each household typically represents a living unit, and the number of residents is the total population in those living units.')
+st.markdown('In most cases, the number of residents in an area is closely related to the number of households. Each household typically represents a living unit, and the number of residents is the total population in those living units.')
 
 
 st.header('Socioeconomic Correlations')
@@ -89,11 +90,30 @@ trendline_color_override="red",
 title="PctEconomicallyIndependent VS AvgIncome")
 # Plot!
 st.plotly_chart(fig)
-st.text('This shows us a strong positive correlation, if a higher percentage of residents are economically independent, it is likely that the average income in the area would also be higher.')
+st.markdown('This shows us a strong positive correlation, if a higher percentage of residents are economically independent, it is likely that the average income in the area would also be higher.')
 
 st.header('Safety and Security Correlations')
 st.subheader('Correlation between the percentage of residents feeling unsafe and the number of complaints related to noise.')
 
+code = df['PctFeelsUnsafe'].corr(df['PctComplainsNoise']).round(decimals=2)
+st.text(code)
+fig = px.scatter(df,
+x="PctFeelsUnsafe",
+y="PctComplainsNoise",
+title="PctFeelsUnsafe VS PctComplainsNoise")
+# Plot!
+st.plotly_chart(fig)
+st.markdown('We have a correlation between percentage of residents feeling unsafe and the number of complaints related to noise of 0.60.')
+st.markdown('The correlation might indicate that areas with more noise complaints tend to have residents who feel less safe, as both factors contribute to a less desirable living environment.')
+
+fig = px.scatter(df,
+x="PctFeelsUnsafe",
+y="PctComplainsNoise",
+trendline="ols",
+trendline_color_override="red",
+title="PctFeelsUnsafe VS PctComplainsNoise")
+# Plot!
+st.plotly_chart(fig)
 
 
 
