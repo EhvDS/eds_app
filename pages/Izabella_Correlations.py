@@ -146,7 +146,24 @@ st.subheader('Correlation between the percentage of high education and the avera
 code = df['PctHighEducation'].corr(df['AvgIncome']).round(decimals=2)
 st.text(code)
 
+st.markdown('The correlation may reflect the reality that individuals with higher levels of education tend to earn higher incomes.')
 
+fig = px.scatter(df,
+x="PctHighEducation",
+y="AvgIncome",
+title="PctHighEducation VS AvgIncome")
+# Plot!
+st.plotly_chart(fig)
+st.markdown('Higher education levels often lead to greater skill sets and qualifications, making individuals more competitive in the job market and potentially resulting in higher-paying positions.')
+
+fig = px.scatter(df,
+x="PctHighEducation",
+y="AvgIncome",
+trendline="ols",
+trendline_color_override="red",
+title="PctHighEducation VS AvgIncome")
+# Plot!
+st.plotly_chart(fig)
 
 
 
