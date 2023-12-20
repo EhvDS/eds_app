@@ -21,6 +21,7 @@ from IPython.display import display
 from scipy import stats
 
 st.write('# Correlations in Eindhoven')
+st.markdown("*Made by Izabella Bogdanova*.")
 
 st.caption('# What is correlation?')
 st.markdown('Correlation coefficients quantify the association between variables or features of a dataset.')
@@ -97,6 +98,7 @@ st.subheader('Correlation between the percentage of residents feeling unsafe and
 
 code = df['PctFeelsUnsafe'].corr(df['PctComplainsNoise']).round(decimals=2)
 st.text(code)
+
 fig = px.scatter(df,
 x="PctFeelsUnsafe",
 y="PctComplainsNoise",
@@ -114,6 +116,36 @@ trendline_color_override="red",
 title="PctFeelsUnsafe VS PctComplainsNoise")
 # Plot!
 st.plotly_chart(fig)
+
+st.subheader('Relationship between the perceived social cohesion score and the percentage of residents feeling unhappy')
+
+code = df['ScoreSocialCohesion'].corr(df['PctUnhappy']).round(decimals=2)
+st.text(code)
+
+fig = px.scatter(df,
+x="ScoreSocialCohesion",
+y="PctUnhappy",
+title="ScoreSocialCohesion VS PctUnhappy")
+# Plot!
+st.plotly_chart(fig)
+st.markdown('It could be argued that social isolation or lack of community support may be more common in neighbourhoods where residents feel that social cohesion is lower. This may contribute to feelings of unhappiness among residents. Also, datapoints here distributed only on right side.')
+
+fig = px.scatter(df,
+x="ScoreSocialCohesion",
+y="PctUnhappy",
+trendline="ols",
+trendline_color_override="red",
+title="ScoreSocialCohesion VS PctUnhappy")
+# Plot!
+st.plotly_chart(fig)
+
+
+st.header('Education and Economic Factors')
+st.subheader('Correlation between the percentage of high education and the average income.')
+
+code = df['PctHighEducation'].corr(df['AvgIncome']).round(decimals=2)
+st.text(code)
+
 
 
 
