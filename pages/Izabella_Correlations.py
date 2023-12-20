@@ -98,6 +98,7 @@ st.subheader('Correlation between the percentage of residents feeling unsafe and
 
 code = df['PctFeelsUnsafe'].corr(df['PctComplainsNoise']).round(decimals=2)
 st.text(code)
+st.markdown('We have a correlation between percentage of residents feeling unsafe and the number of complaints related to noise of 0.60.')
 
 fig = px.scatter(df,
 x="PctFeelsUnsafe",
@@ -105,9 +106,6 @@ y="PctComplainsNoise",
 title="PctFeelsUnsafe VS PctComplainsNoise")
 # Plot!
 st.plotly_chart(fig)
-st.markdown('We have a correlation between percentage of residents feeling unsafe and the number of complaints related to noise of 0.60.')
-st.markdown('The correlation might indicate that areas with more noise complaints tend to have residents who feel less safe, as both factors contribute to a less desirable living environment.')
-
 fig = px.scatter(df,
 x="PctFeelsUnsafe",
 y="PctComplainsNoise",
@@ -116,11 +114,14 @@ trendline_color_override="red",
 title="PctFeelsUnsafe VS PctComplainsNoise")
 # Plot!
 st.plotly_chart(fig)
+st.markdown('The correlation might indicate that areas with more noise complaints tend to have residents who feel less safe, as both factors contribute to a less desirable living environment.')
+
 
 st.subheader('Relationship between the perceived social cohesion score and the percentage of residents feeling unhappy')
 
 code = df['ScoreSocialCohesion'].corr(df['PctUnhappy']).round(decimals=2)
 st.text(code)
+st.markdown('The correlation between the perceived social cohesion score and the percentage of residents feeling unhappy is moderately strong (0.66). This implies that areas with higher perceived social cohesion scores are associated with a lower percentage of residents feeling unhappy.')
 
 fig = px.scatter(df,
 x="ScoreSocialCohesion",
@@ -128,7 +129,6 @@ y="PctUnhappy",
 title="ScoreSocialCohesion VS PctUnhappy")
 # Plot!
 st.plotly_chart(fig)
-st.markdown('It could be argued that social isolation or lack of community support may be more common in neighbourhoods where residents feel that social cohesion is lower. This may contribute to feelings of unhappiness among residents. Also, datapoints here distributed only on right side.')
 
 fig = px.scatter(df,
 x="ScoreSocialCohesion",
@@ -138,6 +138,7 @@ trendline_color_override="red",
 title="ScoreSocialCohesion VS PctUnhappy")
 # Plot!
 st.plotly_chart(fig)
+st.markdown('It could be argued that social isolation or lack of community support may be more common in neighbourhoods where residents feel that social cohesion is lower. This may contribute to feelings of unhappiness among residents. Also, datapoints here distributed only on right side.')
 
 
 st.header('Education and Economic Factors')
@@ -145,8 +146,7 @@ st.subheader('Correlation between the percentage of high education and the avera
 
 code = df['PctHighEducation'].corr(df['AvgIncome']).round(decimals=2)
 st.text(code)
-
-st.markdown('The correlation may reflect the reality that individuals with higher levels of education tend to earn higher incomes.')
+st.markdown('A correlation coefficient of 0.69 between the percentage of high education and average income suggests a moderately strong positive linear relationship between these two variables.')
 
 fig = px.scatter(df,
 x="PctHighEducation",
@@ -154,7 +154,7 @@ y="AvgIncome",
 title="PctHighEducation VS AvgIncome")
 # Plot!
 st.plotly_chart(fig)
-st.markdown('Higher education levels often lead to greater skill sets and qualifications, making individuals more competitive in the job market and potentially resulting in higher-paying positions.')
+
 
 fig = px.scatter(df,
 x="PctHighEducation",
@@ -164,13 +164,85 @@ trendline_color_override="red",
 title="PctHighEducation VS AvgIncome")
 # Plot!
 st.plotly_chart(fig)
+st.markdown('The correlation may reflect the reality that individuals with higher levels of education tend to earn higher incomes. Higher education levels often lead to greater skill sets and qualifications, making individuals more competitive in the job market and potentially resulting in higher-paying positions.')
 
 
 
+st.subheader('Relationship between the percentage of high education and the percentage of economically independent residents.')
+
+code = df['PctHighEducation'].corr(df['PctEconomicallyIndependent']).round(decimals=2)
+st.text(code)
+
+st.markdown('A correlation coefficient of 0.72 between the percentage of high education and the percentage of economically independent residents indicates a strong positive linear relationship between these two variables.')
+
+fig = px.scatter(df,
+x="PctHighEducation",
+y="PctEconomicallyIndependent",
+title="PctHighEducation VS PctEconomicallyIndependent")
+# Plot!
+st.plotly_chart(fig)
+
+fig = px.scatter(df,
+x="PctHighEducation",
+y="PctEconomicallyIndependent",
+trendline="ols",
+trendline_color_override="red",
+title="PctHighEducation VS PctEconomicallyIndependent")
+# Plot!
+st.plotly_chart(fig)
+st.markdown('Individuals with higher levels of education often acquire skills and qualifications that make them more employable and better positioned for economic independence. The positive correlation could reflect the notion that a community with a higher percentage of highly educated individuals also has a higher percentage of economically independent residents.')
 
 
 
+st.header('Health and Environment Correlations')
+st.subheader('Correlation between the percentage of complaints related to air quality and noise.')
 
+code = df['PctComplainsAQ'].corr(df['PctComplainsNoise']).round(decimals=2)
+st.text(code)
+st.markdown('A correlation coefficient of 0.88 between the percentage of complaints related to air quality and noise indicates a very strong positive linear relationship between these two variables.')
+
+fig = px.scatter(df,
+x="PctComplainsAQ",
+y="PctComplainsNoise",
+title="PctComplainsAQ VS PctComplainsNoise")
+# Plot!
+st.plotly_chart(fig)
+
+fig = px.scatter(df,
+x="PctComplainsAQ",
+y="PctComplainsNoise",
+trendline="ols",
+trendline_color_override="red",
+title="PctComplainsAQ VS PctComplainsNoise")
+# Plot!
+st.plotly_chart(fig)
+
+st.markdown('Both air quality and noise complaints may be influenced by shared environmental factors. For example, industrial activities, traffic, or construction projects can contribute to both poor air quality and increased noise levels in a given area.')
+
+
+st.header('Accessibility and Distance Correlations')
+st.subheader('Correlation between "Distance2Trainstation" and "Distance2Cinema.')
+
+code = df['Distance2Trainstation'].corr(df['Distance2Cinema']).round(decimals=2)
+st.text(code)
+st.markdown('A correlation coefficient of 0.87 between "Distance2Trainstation" and "Distance2Cinema" indicates a very strong positive linear relationship between these two variables.')
+
+fig = px.scatter(df,
+x="Distance2Trainstation",
+y="Distance2Cinema",
+title="Distance2Trainstation VS Distance2Cinema")
+# Plot!
+st.plotly_chart(fig)
+
+fig = px.scatter(df,
+x="Distance2Trainstation",
+y="Distance2Cinema",
+trendline="ols",
+trendline_color_override="red",
+title="Distance2Trainstation VS Distance2Cinema")
+# Plot!
+st.plotly_chart(fig)
+st.markdown('Train stations and cinemas are often located in urban or central areas. This dataset includes neighborhoods in urban environments, the correlation reflects the tendency for both train stations and cinemas to be situated close to central locations.')
 
 
 
