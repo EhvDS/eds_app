@@ -47,12 +47,10 @@ cols = ['number of residents', 'ScoreDiversity', 'NumberHouseholds',
        'Distance2FamilyDoctor', 'Distance2Cinema', 'Distance2Cafe',
        'Distance2SwimmingPool']
 cm = np.corrcoef(df[cols].values, rowvar=0).round(decimals=2)
-
-
 fig = px.imshow(cm, text_auto = True,
                 color_continuous_scale = 'RdYlBu', 
-                x = df.columns, 
-                y = df.columns, 
+                x = cols, 
+                y = cols, 
                 aspect="auto",
                 title="Correlation Matrix")
 
@@ -65,6 +63,14 @@ st.subheader('Correlation between "number of residents" and "number of household
 code = df['number of residents'].corr(df['NumberHouseholds']).round(decimals=2)
 st.text(code)
 st.markdown('Here we have a correlation 0.96, hence I am going to show it.')
+
+fig = px.scatter(df,
+x="number of residents",
+y="NumberHouseholds",
+color = 'NbName',
+title="Number of Residents VS Number Households with Neighbourhood name")
+# Plot!
+st.plotly_chart(fig)
 
 fig = px.scatter(df,
 x="number of residents",
@@ -86,6 +92,14 @@ st.text(code)
 fig = px.scatter(df,
 x="PctEconomicallyIndependent",
 y="AvgIncome",
+color = 'NbName',
+title="PctEconomicallyIndependent VS AvgIncome with Neighbourhood name")
+# Plot!
+st.plotly_chart(fig)
+
+fig = px.scatter(df,
+x="PctEconomicallyIndependent",
+y="AvgIncome",
 trendline="ols",
 trendline_color_override="red",
 title="PctEconomicallyIndependent VS AvgIncome")
@@ -103,7 +117,8 @@ st.markdown('We have a correlation between percentage of residents feeling unsaf
 fig = px.scatter(df,
 x="PctFeelsUnsafe",
 y="PctComplainsNoise",
-title="PctFeelsUnsafe VS PctComplainsNoise")
+color = 'NbName',
+title="PctFeelsUnsafe VS PctComplainsNoise with Neighbourhood name")
 # Plot!
 st.plotly_chart(fig)
 fig = px.scatter(df,
@@ -126,7 +141,8 @@ st.markdown('The correlation between the perceived social cohesion score and the
 fig = px.scatter(df,
 x="ScoreSocialCohesion",
 y="PctUnhappy",
-title="ScoreSocialCohesion VS PctUnhappy")
+color = 'NbName',
+title="ScoreSocialCohesion VS PctUnhappy with Neighbourhood name")
 # Plot!
 st.plotly_chart(fig)
 
@@ -151,7 +167,8 @@ st.markdown('A correlation coefficient of 0.69 between the percentage of high ed
 fig = px.scatter(df,
 x="PctHighEducation",
 y="AvgIncome",
-title="PctHighEducation VS AvgIncome")
+color = 'NbName',
+title="PctHighEducation VS AvgIncome with Neighbourhood name")
 # Plot!
 st.plotly_chart(fig)
 
@@ -178,7 +195,8 @@ st.markdown('A correlation coefficient of 0.72 between the percentage of high ed
 fig = px.scatter(df,
 x="PctHighEducation",
 y="PctEconomicallyIndependent",
-title="PctHighEducation VS PctEconomicallyIndependent")
+color = 'NbName',
+title="PctHighEducation VS PctEconomicallyIndependent with Neighbourhood name")
 # Plot!
 st.plotly_chart(fig)
 
@@ -204,7 +222,8 @@ st.markdown('A correlation coefficient of 0.88 between the percentage of complai
 fig = px.scatter(df,
 x="PctComplainsAQ",
 y="PctComplainsNoise",
-title="PctComplainsAQ VS PctComplainsNoise")
+color = "NbName",
+title="PctComplainsAQ VS PctComplainsNoise with Neighbourhood name")
 # Plot!
 st.plotly_chart(fig)
 
@@ -230,7 +249,8 @@ st.markdown('A correlation coefficient of 0.87 between "Distance2Trainstation" a
 fig = px.scatter(df,
 x="Distance2Trainstation",
 y="Distance2Cinema",
-title="Distance2Trainstation VS Distance2Cinema")
+color = "NbName",
+title="Distance2Trainstation VS Distance2Cinema with Neighbourhood name")
 # Plot!
 st.plotly_chart(fig)
 
