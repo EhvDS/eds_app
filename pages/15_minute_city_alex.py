@@ -48,7 +48,7 @@ for i, row_i in df_neighborhoods.iterrows():
         route = response.json()['routes'][0]['legs'][0]['duration']['value']
 
         # If the travel time is under the threshold
-        if route / 60 <= threshold:
+        if route / 60 <= 40:
             # Add a line between the neighborhoods on the map
             folium.PolyLine([(row_i['latitude'], row_i['longitude']), (row_j['latitude'], row_j['longitude'])], color="red", weight=2.5, opacity=1).add_to(m)
 
