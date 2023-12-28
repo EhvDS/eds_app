@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import folium
+from streamlit_folium import folium_static
 
 # Loading the data
 df_neighborhoods = pd.read_csv("./data/buurten_data_alex.csv", sep=';')
@@ -13,4 +15,14 @@ st.subheader("Find the closest path from A to B")
 
 st.dataframe(df_neighborhoods)
 
-st.map(df_neighborhoods['geo_shape'])
+latitude, longitude = map(float, df_neighborhoods['geo_point_2d'].split(","))
+m = folium.Map(location=[latitude, longitude], zoom_start=13)
+
+# Add a GeoJSON layer to the map
+folium.GeoJson(
+    data=df_neighborhoods['geo_shape'],
+    name='geojson'
+).add_to(m)
+
+# Display the map in Streamlit
+folium_static(m)
