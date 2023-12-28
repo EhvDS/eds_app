@@ -15,15 +15,15 @@ st.subheader("Find the closest path from A to B")
 
 st.dataframe(df_neighborhoods)
 
-latitude, longitude = df_neighborhoods['geo_point_2d'].str.split(",", expand=True).astype(float)
+df_neighborhoods[['latitude', 'longitude']] = df_neighborhoods['geo_point_2d'].str.split(",", expand=True).astype(float)
 
-m = folium.Map(location=[latitude, longitude], zoom_start=13)
+# Create a map
+m = folium.Map(location=[df_neighborhoods['latitude'].mean(), df_neighborhoods['longitude'].mean()], zoom_start=13)
 
-# Add a GeoJSON layer to the map
-folium.GeoJson(
-    data=df_neighborhoods['geo_shape'],
-    name='geojson'
-).add_to(m)
+# Add the GeoJSON data to the map
+for _, row in df_neighborhoods.iterrows():
+    geojson_data = json.loads(row['geo_shape'])
+    folium.GeoJson(geojson_data).add_to(m)
 
 # Display the map in Streamlit
 folium_static(m)
