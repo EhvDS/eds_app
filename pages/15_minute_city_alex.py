@@ -36,21 +36,21 @@ for _, row in df_neighborhoods.iterrows():
     ).add_to(m)
 
 # Add the connections between neighborhoods
-for i, row_i in df_neighborhoods.iterrows():
-    for j, row_j in df_neighborhoods.iterrows():
-        # The URL of the Google Maps Directions API
-        url = f"https://maps.googleapis.com/maps/api/directions/json?origin={row_i['latitude']},{row_i['longitude']}&destination={row_j['latitude']},{row_j['longitude']}&key={api_key}"
+# for i, row_i in df_neighborhoods.iterrows():
+#     for j, row_j in df_neighborhoods.iterrows():
+#         # The URL of the Google Maps Directions API
+#         url = f"https://maps.googleapis.com/maps/api/directions/json?origin={row_i['latitude']},{row_i['longitude']}&destination={row_j['latitude']},{row_j['longitude']}&key={api_key}"
 
-        # Send a request to the API
-        response = requests.get(url)
+#         # Send a request to the API
+#         response = requests.get(url)
 
-        # Parse the response JSON to get the route
-        route = response.json()['routes'][0]['legs'][0]['duration']['value']
+#         # Parse the response JSON to get the route
+#         route = response.json()['routes'][0]['legs'][0]['duration']['value']
 
-        # If the travel time is under the threshold
-        if route / 60 <= 15:
-            # Add a line between the neighborhoods on the map
-            folium.PolyLine([(row_i['latitude'], row_i['longitude']), (row_j['latitude'], row_j['longitude'])], color="red", weight=2.5, opacity=1).add_to(m)
+#         # If the travel time is under the threshold
+#         if route / 60 <= 15:
+#             # Add a line between the neighborhoods on the map
+#             folium.PolyLine([(row_i['latitude'], row_i['longitude']), (row_j['latitude'], row_j['longitude'])], color="red", weight=2.5, opacity=1).add_to(m)
 
 # Display the map in Streamlit
 folium_static(m)
