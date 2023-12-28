@@ -26,5 +26,15 @@ for _, row in df_neighborhoods.iterrows():
     geojson_data = json.loads(row['geo_shape'])
     folium.GeoJson(geojson_data).add_to(m)
 
+    # Add a marker in the middle of each neighborhood
+    folium.Marker(
+        location=[row['latitude'], row['longitude']],
+        # Create a popup with the name and other information
+        popup=folium.Popup(f"Name: {row['BUURTNAAM']}, District: {row['WIJKNAAM']}", max_width=250)
+    ).add_to(m)
+
+# Display the map in Streamlit
+folium_static(m)
+
 # Display the map in Streamlit
 folium_static(m)
