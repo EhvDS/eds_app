@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 # Loading the data
-df_neighborhoods = pd.read_csv("./data/buurten_data_alex.csv", index_col=0)
+df_neighborhoods = pd.read_csv("./data/buurten_data_alex.csv")
 
 
 st.title("15 Minutes City")
