@@ -14,6 +14,8 @@ st.title("15 Minutes City")
 
 st.subheader("Find the closest path from A to B")
 
+threshold = st.number_input("Enter the threshold (in minutes):", min_value=0, max_value=60, step=1, value=15)
+
 st.dataframe(df_neighborhoods)
 
 df_neighborhoods[['latitude', 'longitude']] = df_neighborhoods['geo_point_2d'].str.split(",", expand=True).astype(float)
@@ -46,7 +48,7 @@ for i, row_i in df_neighborhoods.iterrows():
         route = response.json()['routes'][0]['legs'][0]['duration']['value']
 
         # If the travel time is under the threshold
-        if route / 60 <= 30:
+        if route / 60 <= threshold:
             # Add a line between the neighborhoods on the map
             folium.PolyLine([(row_i['latitude'], row_i['longitude']), (row_j['latitude'], row_j['longitude'])], color="red", weight=2.5, opacity=1).add_to(m)
 
