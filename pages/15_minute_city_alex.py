@@ -13,4 +13,4 @@ st.subheader("Find the closest path from A to B")
 
 st.dataframe(df_neighborhoods)
 
-st.map(df_neighborhoods)
+st.map(df_neighborhoods['geo_shape'])
