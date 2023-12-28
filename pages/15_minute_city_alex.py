@@ -15,7 +15,8 @@ st.subheader("Find the closest path from A to B")
 
 st.dataframe(df_neighborhoods)
 
-latitude, longitude = map(float, df_neighborhoods['geo_point_2d'].split(","))
+latitude, longitude = df_neighborhoods['geo_point_2d'].str.split(",", expand=True).astype(float)
+
 m = folium.Map(location=[latitude, longitude], zoom_start=13)
 
 # Add a GeoJSON layer to the map
