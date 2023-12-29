@@ -14,7 +14,11 @@ st.title("15 Minutes City")
 
 st.subheader("Find the closest path from A to B")
 
-threshold = st.number_input("Enter the threshold (in minutes):", min_value=0, max_value=60, step=1, value=15)
+# Add an input for the minutes
+minutes = st.number_input("Enter the minutes:", min_value=0, max_value=60, step=1, value=15)
+
+threshold = minutes * 4 / 60
+
 
 st.dataframe(df_neighborhoods)
 
