@@ -3,6 +3,7 @@ import pandas as pd
 import json
 import folium
 import networkx as nx
+from geopy.distance import geodesic
 from streamlit_folium import folium_static
 
 
