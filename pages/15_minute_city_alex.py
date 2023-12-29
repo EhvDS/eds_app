@@ -17,6 +17,9 @@ st.subheader("Visualize and understand the connectivity between neighborhoods wi
 minutes = st.number_input("Enter the minutes:", min_value=0, max_value=60, step=1, value=15)
 threshold = minutes * 4 / 60 # Assuming the average walking speed is 4 km per hour
 
+style_function = lambda x: {'fillColor': '#0000004D', 'color': '#0000004D'}
+
+
 # Function to calculate distance
 def calculate_distance(point1, point2):
     return geodesic(point1, point2).km
@@ -31,7 +34,7 @@ for index, row in df_neighborhoods.iterrows():
             distance = calculate_distance((row['latitude'], row['longitude']), (row2['latitude'], row2['longitude']))
             if distance <= threshold:  # Only add connections under threshold
                 geojson_data = json.loads(row['geo_shape'])
-                folium.GeoJson(geojson_data).add_to(m)
+                folium.GeoJson(geojson_data, style_function=style_function).add_to(m)
                 folium.Marker(
                     location=[row['latitude'], row['longitude']],
                     # Create a popup with the name and other information
