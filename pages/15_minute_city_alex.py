@@ -31,12 +31,13 @@ for index, row in df_neighborhoods.iterrows():
             distance = calculate_distance((row['latitude'], row['longitude']), (row2['latitude'], row2['longitude']))
             if distance <= threshold:  # Only add connections under threshold
                 geojson_data = json.loads(row['geo_shape'])
-                folium.GeoJson(
-                    geojson_data,
+                folium.GeoJson(geojson_data).add_to(m)
+                folium.Marker(
+                    location=[row['latitude'], row['longitude']],
+                    radius=0.2,
                     # Create a popup with the name and other information
                     popup=folium.Popup(f"Name: {row['BUURTNAAM']}, District: {row['WIJKNAAM']}", max_width=250)
                 ).add_to(m)
-
                 folium.PolyLine([(row['latitude'], row['longitude']), (row2['latitude'], row2['longitude'])], color="blue", weight=2.5, opacity=1).add_to(m)
 
 # Display the map in Streamlit
