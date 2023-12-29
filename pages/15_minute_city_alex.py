@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import json
 import folium
-import networkx as nx
 from geopy.distance import geodesic
 from streamlit_folium import folium_static
 
@@ -12,7 +11,7 @@ df_neighborhoods = pd.read_csv("./data/buurten_data_alex.csv", sep=';')
 df_neighborhoods[['latitude', 'longitude']] = df_neighborhoods['geo_point_2d'].str.split(",", expand=True).astype(float)
 
 st.title("15 Minutes City")
-st.subheader("Find the closest path from A to B")
+st.subheader("Visualize and understand the connectivity between neighborhoods within a specified walking or biking time")
 
 # Add an input for the minutes
 minutes = st.number_input("Enter the minutes:", min_value=0, max_value=60, step=1, value=15)
