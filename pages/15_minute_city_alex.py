@@ -34,9 +34,12 @@ for index, row in df_neighborhoods.iterrows():
                 folium.GeoJson(geojson_data).add_to(m)
                 folium.Marker(
                     location=[row['latitude'], row['longitude']],
-                    radius=0.2,
                     # Create a popup with the name and other information
-                    popup=folium.Popup(f"Name: {row['BUURTNAAM']}, District: {row['WIJKNAAM']}", max_width=250)
+                    popup=folium.Popup(f"Name: {row['BUURTNAAM']}, District: {row['WIJKNAAM']}", max_width=250),
+                    icon=folium.DivIcon(html=f"""
+                    <div><svg>
+                        <circle cx="5" cy="5" r="4" fill="#69b3a2" opacity=".8"/>
+                    </svg></div>""")
                 ).add_to(m)
                 folium.PolyLine([(row['latitude'], row['longitude']), (row2['latitude'], row2['longitude'])], color="blue", weight=2.5, opacity=1).add_to(m)
 
