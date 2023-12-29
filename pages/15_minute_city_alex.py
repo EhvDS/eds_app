@@ -40,8 +40,6 @@ for index, row in df_neighborhoods.iterrows():
 nx.draw(G, with_labels=True)
 st.pyplot()
 
-# Display the graph in Streamlit
-st.pyplot()
 
 # Create a map
 m = folium.Map(location=[df_neighborhoods['latitude'].mean(), df_neighborhoods['longitude'].mean()], zoom_start=13)
