@@ -33,12 +33,17 @@ def calculate_distance(point1, point2):
 
 # Add nodes and edges to the graph
 for index, row in df_neighborhoods.iterrows():
-    G.add_node(row['BUURTNAAM'], pos=(row['latitude'], row['longitude']))
     for index2, row2 in df_neighborhoods.iterrows():
         if index != index2:
             distance = calculate_distance((row['latitude'], row['longitude']), (row2['latitude'], row2['longitude']))
             if distance <= threshold:  # Only add connections under threshold
+                G.add_node(row['BUURTNAAM'], pos=(row['latitude'], row['longitude']))
+                G.add_node(row2['BUURTNAAM'], pos=(row2['latitude'], row2['longitude']))
                 G.add_edge(row['BUURTNAAM'], row2['BUURTNAAM'])
+
+# Draw the graph
+nx.draw(G, with_labels=True)
+st.pyplot()
 
 # Draw the graph
 nx.draw(G, with_labels=True)
