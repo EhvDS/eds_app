@@ -25,7 +25,7 @@ def calculate_distance(point1, point2):
     return geodesic(point1, point2).km
 
 # Create a map using folium
-m = folium.Map(location=[df_neighborhoods['latitude'].mean(), df_neighborhoods['longitude'].mean()], zoom_start=11)
+m = folium.Map(location=[df_neighborhoods['latitude'].mean(), df_neighborhoods['longitude'].mean()], zoom_start=15)
 
 # Add the GeoJSON data to the map and markers only for neighborhoods within the threshold
 for index, row in df_neighborhoods.iterrows():
