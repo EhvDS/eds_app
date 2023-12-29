@@ -45,6 +45,7 @@ for index, row in df_neighborhoods.iterrows():
                 folium.GeoJson(geojson_data).add_to(m)
                 folium.Marker(
                     location=[row['latitude'], row['longitude']],
+                    radius=0.8,
                     # Create a popup with the name and other information
                     popup=folium.Popup(f"Name: {row['BUURTNAAM']}, District: {row['WIJKNAAM']}", max_width=250)
                 ).add_to(m)
