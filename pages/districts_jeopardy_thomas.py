@@ -53,9 +53,9 @@ def get_value_range(values: Series, operation, error_margin_percentage):
         correct_answer = values.min()
     elif (operation == "median"):
         correct_answer = values.median()
-    median_range_ancor = values.median() # Base the range around correct answer on the median, as this will give a fair range for the entire range of possible values
-    start_correct_range = correct_answer - (error_margin_percentage / 100)*median_range_ancor
-    end_correct_range = correct_answer + (error_margin_percentage / 100)*median_range_ancor
+    median_range_anchor = values.median() # Base the range around correct answer on the median, as this will give a fair range for the entire range of possible values
+    start_correct_range = correct_answer - (error_margin_percentage / 100)*median_range_anchor
+    end_correct_range = correct_answer + (error_margin_percentage / 100)*median_range_anchor
     return start_correct_range, end_correct_range
 
 def answer_classification_question(answer: Series):
@@ -77,7 +77,10 @@ def answer_open_question(answer: int, values: Series, operation, error_margin_pe
     
     start_correct_range, end_correct_range = get_value_range(values, operation, error_margin_percentage)
     question_is_correct = start_correct_range <= answer <= end_correct_range
-
+    st.text(start_correct_range)
+    st.text(answer)
+    st.text(end_correct_range)
+    st.text(question_is_correct)
     state["correct"] = question_is_correct 
     if (question_is_correct):
         # Answer was correct so give the points
@@ -372,7 +375,7 @@ def display_question(header: DeltaGenerator):
         numeric_classification_question(*question_args)
     elif (state["difficulty"] == "hard"):
         if question_args_key not in st.session_state or st.session_state[question_args_key] is None:
-            question_args = (state["district"], random.choice(numeric_features), random.choice(["lowest", "median", "highest"]))
+            question_args = (state["district"], "area", "median")
             st.session_state[question_args_key] = question_args
         else:
             question_args = st.session_state[question_args_key]
