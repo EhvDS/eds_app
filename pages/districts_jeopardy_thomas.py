@@ -77,10 +77,6 @@ def answer_open_question(answer: int, values: Series, operation, error_margin_pe
     
     start_correct_range, end_correct_range = get_value_range(values, operation, error_margin_percentage)
     question_is_correct = start_correct_range <= answer <= end_correct_range
-    st.text(start_correct_range)
-    st.text(answer)
-    st.text(end_correct_range)
-    st.text(question_is_correct)
     state["correct"] = question_is_correct 
     if (question_is_correct):
         # Answer was correct so give the points
@@ -198,8 +194,8 @@ def display_question(header: DeltaGenerator):
                     st.markdown('')
                     st.markdown('')
                     with st.container(border=True):
-                        answer = st.number_input(f"{operation} value for {feature_string}", format="%i", step=1)
-                        st.button("Submit", on_click=answer_open_question, args=(answer, graph_df[feature], operation, error_margin_percentage), disabled=state["completed"])
+                        answer = st.number_input(f"{operation} value for {feature_string}", format="%i", step=1, value=None)
+                        st.button("Submit", on_click=answer_open_question, args=(answer, graph_df[feature], operation, error_margin_percentage), disabled=state["completed"] or answer is None)
                 
         if (state["completed"]):
             # Question has been completed so explain question
@@ -375,7 +371,7 @@ def display_question(header: DeltaGenerator):
         numeric_classification_question(*question_args)
     elif (state["difficulty"] == "hard"):
         if question_args_key not in st.session_state or st.session_state[question_args_key] is None:
-            question_args = (state["district"], "area", "median")
+            question_args = (state["district"], random.choice(numeric_features), random.choice(["lowest", "median", "highest"]))
             st.session_state[question_args_key] = question_args
         else:
             question_args = st.session_state[question_args_key]
