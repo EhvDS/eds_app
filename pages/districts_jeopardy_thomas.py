@@ -10,7 +10,7 @@ import random
 
 
 # Set the page layout to wide view, so that horizontal space is available on large screens
-st.set_page_config(layout="wide") 
+st.set_page_config(layout="wide", page_title="District Jeopardy", page_icon="🎓")
 
 # Keys used to store states persistently
 board_key = "thomas_jeopardy_board"
@@ -40,7 +40,7 @@ def display_jeopardy_board():
                     st.text(district)
                     for option in options:
                         # Single option within district cell
-                        if st.button(f"{option['difficulty']} (${option['prize']})", key=f"{district}-{option['difficulty']}", use_container_width=True, disabled=option["completed"]):
+                        if st.button(f"${option['prize']}", key=f"{district}-{option['difficulty']}", use_container_width=True, disabled=option["completed"]):
                             # Button on click logic
                             # Store the selected option in the current state
                             st.session_state[state_key] = option
@@ -103,9 +103,10 @@ def display_question(header: DeltaGenerator):
         # Create or get answers list, store it in session state to make sure answer reloading can not be abused when reloading current session
         if answers_key not in st.session_state or st.session_state[answers_key] is None:
             # Generate three random answers and the correct answer
-            correct_residents_record = graph_df.loc[correct_record_idxs[0]] # Get the correct answer record
+            correct_residents_record = graph_df.loc[correct_record_idxs[0]].to_frame().T # Get the correct answer record
             answers = graph_df.loc[np.random.choice(graph_df.index[graph_df.index != correct_record_idxs[0]], 3, replace=False)] # Select 3 random records excluding the maximum residents record
-            answers = answers.append(correct_residents_record).sample(frac=1) # Add answer to other answers list, and shuffle the records
+            correct_residents_record["is_correct"] = correct_residents_record["is_correct"].astype(bool) # Set the is_correct col to bool explicitely to avoid future deprecation issues
+            answers = pd.concat([answers, correct_residents_record]).sample(frac=1) # Add answer to other answers list, and shuffle the records
             st.session_state[answers_key] = answers
         else:
             answers = st.session_state[answers_key]
@@ -222,7 +223,6 @@ def display_question(header: DeltaGenerator):
             median = bp["medians"][0].get_xdata()[1]
             upper_percentile = bp['boxes'][0].get_xdata()[2]
             max_value = graph_df[feature].max()
-            print(fig.get_axes)
             plt.yticks([])
             plt.tick_params(axis='x', colors='white')
             plt.xticks([min_value, lower_percentile, median, upper_percentile, max_value, start_correct_range, end_correct_range], color="white", rotation=90)
