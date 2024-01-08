@@ -18,31 +18,6 @@ filtered_data = data[
     (data['WONINGTYPE'].isin(selected_housing_type))
 ]
 
-
-Om een topografische grijze kaart van Eindhoven te gebruiken in plaats van de standaard kaartstijl, kun je de tiles parameter in Folium gebruiken. Hier is hoe je een topografische grijze kaart van Eindhoven kunt weergeven:
-
-python
-Copy code
-import streamlit as st
-import pandas as pd
-import folium
-from streamlit_folium import folium_static
-
-# Laden van de dataset
-data = pd.read_csv("bestandsnaam.csv", sep=";")  # Vervang "bestandsnaam.csv" door de werkelijke bestandsnaam en locatie
-
-# Streamlit sidebar voor filters
-selected_project_fase = st.sidebar.multiselect('Project Fase', data['PROJECTFASE'].unique())
-selected_building_plan = st.sidebar.multiselect('Bouwplan', data['BOUWPLAN'].unique())
-selected_housing_type = st.sidebar.multiselect('Woningtype', data['WONINGTYPE'].unique())
-
-# Filteren van de data op basis van geselecteerde filters
-filtered_data = data[
-    (data['PROJECTFASE'].isin(selected_project_fase)) &
-    (data['BOUWPLAN'].isin(selected_building_plan)) &
-    (data['WONINGTYPE'].isin(selected_housing_type))
-]
-
 # Kaart van Eindhoven
 m = folium.Map(location=[51.4416, 5.4697], zoom_start=12, tiles='Stamen Terrain', control_scale=True)
 
