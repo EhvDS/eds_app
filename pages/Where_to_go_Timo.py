@@ -1,53 +1,29 @@
 import streamlit as st
-import folium
 import pandas as pd
+import folium
 from streamlit_folium import folium_static
 
-# Data for Eindhoven map
-eindhoven_coordinates = (51.4416, 5.4697)  # Coordinates for Eindhoven
-
-# Replace 'path_to_your_dataset.csv' with your actual dataset
-data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=';')
+# Laden van de dataset
+data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=";")
 
 # Unieke waarden voor filters
-unique_columns = {
-    'Project Fase': data['PROJECTFASE'].unique(),
-    'Name Area': data['NAAMDEELGEBIED'].unique(),
-    'Housing Type': data['WONINGTYPE'].unique(),
-    # Voeg andere kolommen toe voor filters indien nodig
-}
+unique_project_fases = data['PROJECTFASE'].unique()
 
-# Create a Streamlit sidebar for filters
-st.sidebar.header("Map Filters")
+# Streamlit sidebar voor filters
+selected_project_fase = st.sidebar.selectbox('Selecteer een projectfase', unique_project_fases)
 
-# Add filters here, for example:
-selected_project_phase = st.sidebar.multiselect('Project Fase', unique_columns['Project Fase'])
-selected_name_area = st.sidebar.multiselect('Name Area', unique_columns['Name Area'])
-selected_type = st.sidebar.multiselect('Housing Type', unique_columns['Housing Type'])
+# Filteren van de data op basis van geselecteerde projectfase
+filtered_data = data[data['PROJECTFASE'] == selected_project_fase]
 
-# Filter the data based on selected filters
-filtered_data = data[
-    (data['PROJECTFASE'].isin(selected_project_phase)) &
-    (data['NAAMDEELGEBIED'].isin(selected_name_area)) &
-    (data['WONINGTYPE'].isin(selected_type))
-]
+# Kaart van Eindhoven
+m = folium.Map(location=[51.4416, 5.4697], zoom_start=12)  # Coördinaten voor Eindhoven
 
-# Display the filtered data
-st.write(filtered_data)
+# Toevoegen van markers voor gefilterde data
+for idx, row in filtered_data.iterrows():
+    lat, lon = row['geo_point_2d'].split(',')
+    folium.Marker(location=[float(lat), float(lon)], popup=row['NAAMPROJECT']).add_to(m)
 
-# Map creation using Folium
-m = folium.Map(location=[51.45129, 5.45475], zoom_start=12)
-
-# Toevoegen van markers op de kaart gebaseerd op gefilterde data
-for index, row in filtered_data.iterrows():
-    folium.Marker(
-        location=[row['geo_point_2d'].split(',')[0], row['geo_point_2d'].split(',')[1]],
-        popup=row['NAAMPROJECT']
-    ).add_to(m)
-
-
-# Display the initial map
+# Weergeven van de kaart in Streamlit
+st.header(f"Projecten in de fase: {selected_project_fase}")
+st.markdown("Kaart van Eindhoven met gefilterde projecten")
 folium_static(m)
-
-# Display the first few rows of the loaded data
-print(data.head())
