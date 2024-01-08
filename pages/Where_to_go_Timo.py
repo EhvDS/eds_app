@@ -29,9 +29,15 @@ for name, group in grouped_data:
         "coordinates": [locations]
     },
     tooltip=name,
+    style_function=lambda feature: {
+        'fillColor': 'red',
+        'color': 'red',
+        'weight': 2,
+        'fillOpacity': 0.5,
+    },
     popup=f"<b>{name}</b><br>{group['PROJECTFASE'].tolist()}").add_to(m)
 
 # Weergeven van de kaart in Streamlit
 st.header(f"Gekleurde gebieden voor project: {selected_project}")
-st.markdown("Kaart van Eindhoven met gekleurde gebieden per project")
+st.markdown("Kaart van Eindhoven met roodgekleurde gebieden per project")
 folium_static(m)
