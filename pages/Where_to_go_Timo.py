@@ -17,7 +17,8 @@ filtered_data = data[data['PROJECTFASE'] == selected_phase]
 
 # Itereren over de dataset om gebieden toe te voegen als rode polygoon op de kaart
 for index, row in data.iterrows():
-    coordinates = json.loads(row['geo_shape']['coordinates'])  # Coördinaten voor de polygoon van elk project
+    geo_shape = json.loads(row['geo_shape'])
+    coordinates = geo_shape['coordinates']
 
     # Polygoon toevoegen aan de kaart als een rode zone met projectnaam als popup
     folium.Polygon(
