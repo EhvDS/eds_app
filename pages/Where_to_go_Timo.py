@@ -3,6 +3,14 @@ import pandas as pd
 import folium
 from streamlit_folium import folium_static
 
+# Kaart van Eindhoven met Stamen Terrain tegels en attributie
+m = folium.Map(
+    location=[51.4416, 5.4697],
+    zoom_start=12,
+    tiles='Stamen Terrain',
+    attr='Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+)
+
 # Laden van de dataset
 data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=";")  # Vervang "bestandsnaam.csv" door de werkelijke bestandsnaam en locatie
 
