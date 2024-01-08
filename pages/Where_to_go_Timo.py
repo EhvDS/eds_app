@@ -7,7 +7,7 @@ from streamlit_folium import folium_static
 eindhoven_coordinates = (51.4416, 5.4697)  # Coordinates for Eindhoven
 
 # Replace 'path_to_your_dataset.csv' with your actual dataset
-data = pd.read_csv("./data/Timo_Where_to_go.csv")
+data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=';')
 
 # Create a Streamlit sidebar for filters
 st.sidebar.header("Map Filters")
