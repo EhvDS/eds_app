@@ -12,19 +12,19 @@ data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=';')
 # Create a Streamlit sidebar for filters
 st.sidebar.header("Map Filters")
 # Add filters here, for example:
-selected_project_phase = st.sidebar.multiselect('Project Phase', data['projectfase'].unique())
-selected_number_of_homes = st.sidebar.multiselect('Total Number of Homes', data['totaalaantalwoningen'].unique())
-selected_name_area = st.sidebar.multiselect('Name Area', data['naamdeelgebied'].unique())
-selected_number_of_homes_area = st.sidebar.multiselect('Number of homes in area', data['aantalwoningendeelgebied'].unique())
-selected_type = st.sidebar.multiselect('Type', data['woningtype'].unique())
+selected_project_phase = st.sidebar.multiselect('Project Phase', data['PROJECTFASE'].unique())
+selected_number_of_homes = st.sidebar.multiselect('Total Number of Homes', data['TOTAALAANTALWONINGEN'].unique())
+selected_name_area = st.sidebar.multiselect('Name Area', data['NAAMDEELGEBIED'].unique())
+selected_number_of_homes_area = st.sidebar.multiselect('Number of homes in area', data['AANTALWONINGENDEELGEBIED'].unique())
+selected_type = st.sidebar.multiselect('Type', data['WONINGTYPE'].unique())
 
 # Filter the data based on selected filters
 filtered_data = data[
-    (data['projectfase'].isin(selected_project_phase)) &
-    (data['totaalaantalwoningen'].isin(selected_number_of_homes)) &
-    (data['naamdeelgebied'].isin(selected_name_area)) &
-    (data['aantalwoningendeelgebied'].isin(selected_number_of_homes_area))&
-    (data['woningtype'].isin(selected_type))
+    (data['PROJECTFASE'].isin(selected_project_phase)) &
+    (data['TOTAALAANTALWONINGEN'].isin(selected_number_of_homes)) &
+    (data['NAAMDEELGEBIED'].isin(selected_name_area)) &
+    (data['AANTALWONINGENDEELGEBIED'].isin(selected_number_of_homes_area))&
+    (data['WONINGTYPE'].isin(selected_type))
 ]
 
 # Display the filtered data
