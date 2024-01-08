@@ -4,26 +4,34 @@ import folium
 from streamlit_folium import folium_static
 
 # Laden van de dataset
-data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=";")
+data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=";")  # Vervang "bestandsnaam.csv" door de werkelijke bestandsnaam en locatie
 
-# Unieke waarden voor filters
-unique_project_fases = data['PROJECTFASE'].unique()
+# Unieke naamprojecten
+unique_projects = data['NAAMPROJECT'].unique()
 
 # Streamlit sidebar voor filters
-selected_project_fase = st.sidebar.selectbox('Selecteer een projectfase', unique_project_fases)
+selected_project = st.sidebar.selectbox('Selecteer een naamproject', unique_projects)
 
-# Filteren van de data op basis van geselecteerde projectfase
-filtered_data = data[data['PROJECTFASE'] == selected_project_fase]
+# Filteren van de data op basis van geselecteerd naamproject
+filtered_data = data[data['NAAMPROJECT'] == selected_project]
 
 # Kaart van Eindhoven
 m = folium.Map(location=[51.4416, 5.4697], zoom_start=12)  # Coördinaten voor Eindhoven
 
-# Toevoegen van markers voor gefilterde data
-for idx, row in filtered_data.iterrows():
-    lat, lon = row['geo_point_2d'].split(',')
-    folium.Marker(location=[float(lat), float(lon)], popup=row['NAAMPROJECT']).add_to(m)
+# Groeperen van data per uniek naamproject
+grouped_data = data.groupby('NAAMPROJECT')
+
+# Marker toevoegen voor elk uniek naamproject
+for name, group in grouped_data:
+    locations = eval(group.iloc[0]['geo_shape'])['coordinates'][0]
+    folium.GeoJson({
+        "type": "Polygon",
+        "coordinates": [locations]
+    },
+    tooltip=name,
+    popup=f"<b>{name}</b><br>{group['PROJECTFASE'].tolist()}").add_to(m)
 
 # Weergeven van de kaart in Streamlit
-st.header(f"Projecten in de fase: {selected_project_fase}")
-st.markdown("Kaart van Eindhoven met gefilterde projecten")
+st.header(f"Gekleurde gebieden voor project: {selected_project}")
+st.markdown("Kaart van Eindhoven met gekleurde gebieden per project")
 folium_static(m)
