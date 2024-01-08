@@ -13,9 +13,9 @@ data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=';')
 st.sidebar.header("Map Filters")
 
 # Add filters here, for example:
-selected_project_phase = st.sidebar.multiselect('Project Phase', data['PROJECTFASE'].unique())
-selected_name_area = st.sidebar.multiselect('Name Area', data['NAAMDEELGEBIED'].unique())
-selected_type = st.sidebar.multiselect('Type', data['WONINGTYPE'].unique())
+selected_project_phase = st.sidebar.multiselect('Project Fase', unique_columns['Project Fase'])
+selected_name_area = st.sidebar.multiselect('Name Area', unique_columns['Name Area'])
+selected_type = st.sidebar.multiselect('Housing Type', unique_columns['Housing Type'])
 
 # Filter the data based on selected filters
 filtered_data = data[
