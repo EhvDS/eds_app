@@ -22,7 +22,7 @@ for index, row in data.iterrows():
 
     # Polygoon toevoegen aan de kaart als een rode zone met projectnaam als popup
     folium.Polygon(
-        locations=coordinates,
+        locations=coordinates[0],
         color='red',
         fill=True,
         fill_color='red',
