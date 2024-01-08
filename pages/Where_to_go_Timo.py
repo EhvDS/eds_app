@@ -1,5 +1,6 @@
 import streamlit as st
 import folium
+import pandas as pd
 from streamlit_folium import folium_static
 
 # Data for Eindhoven map
