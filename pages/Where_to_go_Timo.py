@@ -1,5 +1,6 @@
 import streamlit as st
 import folium
+from streamlit_folium import folium_static
 
 # Data for Eindhoven map
 eindhoven_coordinates = (51.4416, 5.4697)  # Coordinates for Eindhoven
@@ -14,7 +15,7 @@ data_points = [
 # Create a Streamlit sidebar for filters
 st.sidebar.header("Map Filters")
 # Add filters here, for example:
-# min_distance = st.sidebar.slider("Minimum distance", min_value=0, max_value=10, value=2)
+min_distance = st.sidebar.slider("Minimum distance", min_value=0, max_value=10, value=2)
 
 # Create the map using Folium
 m = folium.Map(location=eindhoven_coordinates, zoom_start=14)
