@@ -9,6 +9,14 @@ eindhoven_coordinates = (51.4416, 5.4697)  # Coordinates for Eindhoven
 # Replace 'path_to_your_dataset.csv' with your actual dataset
 data = pd.read_csv("./data/Timo_Where_to_go.csv", sep=';')
 
+# Unieke waarden voor filters
+unique_columns = {
+    'Project Fase': data['PROJECTFASE'].unique(),
+    'Name Area': data['NAAMDEELGEBIED'].unique(),
+    'Housing Type': data['WONINGTYPE'].unique(),
+    # Voeg andere kolommen toe voor filters indien nodig
+}
+
 # Create a Streamlit sidebar for filters
 st.sidebar.header("Map Filters")
 
