@@ -6,18 +6,24 @@ from streamlit_folium import folium_static
 eindhoven_coordinates = (51.4416, 5.4697)  # Coordinates for Eindhoven
 
 # Replace 'path_to_your_dataset.csv' with your actual dataset
-data = pd.read_csv('Timo_Where_to_go.csv')
+data = pd.read_csv("./data/Timo_Where_to_go.csv")
 
 # Create a Streamlit sidebar for filters
 st.sidebar.header("Map Filters")
 # Add filters here, for example:
 selected_project_phase = st.sidebar.multiselect('Project Phase', data['projectfase'].unique())
 selected_number_of_homes = st.sidebar.multiselect('Total Number of Homes', data['totaalaantalwoningen'].unique())
+selected_name_area = st.sidebar.multiselect('Name Area', data['naamdeelgebied'].unique())
+selected_number_of_homes_area = st.sidebar.multiselect('Number of homes in area', data['aantalwoningendeelgebied'].unique())
+selected_type = st.sidebar.multiselect('Type', data['woningtype'].unique())
 
 # Filter the data based on selected filters
 filtered_data = data[
     (data['projectfase'].isin(selected_project_phase)) &
-    (data['totaalaantalwoningen'].isin(selected_number_of_homes))
+    (data['totaalaantalwoningen'].isin(selected_number_of_homes)) &
+    (data['naamdeelgebied'].isin(selected_name_area)) &
+    (data['aantalwoningendeelgebied'].isin(selected_number_of_homes_area))&
+    (data['woningtype'].isin(selected_type))
 ]
 
 # Display the filtered data
