@@ -6,7 +6,7 @@ from streamlit_folium import folium_static
 data = pd.read_csv('./data/Timo_Where_to_go.csv', sep=';')
 
 # Kaart van Eindhoven initialiseren
-m = folium.Map(location=[51.4416, 5.4697], zoom_start=12, tiles='Stamen Terrain', control_scale=True)
+m = folium.Map(location=[51.4416, 5.4697], zoom_start=12)
 
 # Voeg een selectiebox toe om projectfasen te filteren
 selected_phase = st.sidebar.selectbox('Selecteer projectfase', data['PROJECTFASE'].unique())
@@ -24,7 +24,7 @@ for index, row in data.iterrows():
         color='red',
         fill=True,
         fill_color='red',
-        fill_opacity=0.4,
+        fill_opacity=1,
         popup=row['NAAMPROJECT']
     ).add_to(m)
 
