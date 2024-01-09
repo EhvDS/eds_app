@@ -11,7 +11,7 @@ import random
 def main():
 
     # Loading images
-    df_images = pd.read_csv("../data/kaan_geoguessr_images.csv", index_col=0)
+    df_images = pd.read_csv("./data/kaan_geoguessr_images.csv", index_col=0)
 
     # Session state
     if 'score2' not in st.session_state:  # number of correct guesses
