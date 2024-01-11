@@ -251,7 +251,7 @@ def display_question(header: DeltaGenerator):
                     for i, district in graph_df.iterrows():
                         plt.text(district[featureX], district[featureY], district['char'], fontsize=12, ha='center', va='center')
                     plt.tick_params(axis='both', colors='white')
-                    plt.xticks(rotation="90")
+                    plt.xticks(rotation=90)
                     plt.xlabel(featureX_string, color="white")
                     plt.ylabel(featureY_string, color="white")
                     plt.gca().yaxis.set_major_formatter(StrMethodFormatter('{x:.0f}'))
@@ -286,7 +286,7 @@ def display_question(header: DeltaGenerator):
             for i, district in graph_df.iterrows():
                 plt.text(district[featureX], district[featureY], district['char'], fontsize=12, ha='center', va='center', color="red" if district["is_correct"] else "black")
             plt.tick_params(axis='both', colors='white')
-            plt.xticks(rotation="90")
+            plt.xticks(rotation=90)
             plt.xlabel(featureX_string, color="white")
             plt.ylabel(featureY_string, color="white")
             plt.gca().yaxis.set_major_formatter(StrMethodFormatter('{x:.0f}'))
