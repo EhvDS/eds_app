@@ -1,37 +1,44 @@
 import streamlit as st
 from streamlit_pannellum import streamlit_pannellum
+import pandas as pd
+import random
 
 # Loading images
-# TODO: group images per neighbourhood, find good storage location for the images
-images = {
-    "Philips Stadion": "https://i.imgur.com/PCogYkq.jpg",
-    "Strijp-T": "https://i.imgur.com/zAPJhoc.jpg",
-    "Catharinakerk": "https://i.imgur.com/v9JDK49.jpg"
-}
-image_keys = list(images.keys())
+df_images = pd.read_csv("./data/kevin_geoguessr_images.csv", index_col=0)
 
 # Session state
 if 'score' not in st.session_state: # number of correct guesses
     st.session_state.score = 0
 
-if 'image_index' not in st.session_state: # image_index controls the image that is shown
-    st.session_state.image_index = 0
+if 'current_image' not in st.session_state:
+    st.session_state.current_image = df_images.sample()
 
-if 'current_round' not in st.session_state: # image_index controls the image that is shown
+if 'images_seen' not in st.session_state: # keep track of images seen this round to avoid duplicates
+    st.session_state.images_seen = []
+
+if 'current_round' not in st.session_state:
     st.session_state.current_round = 1
 
 n_rounds = 5
 game_done = st.session_state.current_round > n_rounds
 
-def cycle_image(): # TODO: make image selection random
-    # Increase index or reset to 0 if max is reached
-    if st.session_state.image_index < (len(image_keys)-1):
-        st.session_state.image_index += 1
-    else:
-        st.session_state.image_index = 0
+def cycle_image():
+    # Randomly select new image, avoid images already shown this game
+    new_image = df_images.sample()
+    
+    print(st.session_state.images_seen)
+    url_check = new_image['URL'].tolist()[0]
+    while url_check in st.session_state.images_seen:
+        new_image = df_images.sample()
+        url_check = new_image['URL'].tolist()[0]
 
-selected_image = images[ image_keys[st.session_state.image_index] ]
-correct_neighbourhood = image_keys[ st.session_state.image_index ]
+    st.session_state.images_seen.append(url_check)
+    st.session_state.current_image = new_image
+
+selected_image = st.session_state.current_image['URL']
+selected_image = selected_image.tolist()[0]
+correct_neighbourhood = st.session_state.current_image['NbName']
+correct_neighbourhood = correct_neighbourhood.tolist()[0]
 
 # Header section
 st.title("Geoguessr in Eindhoven")
@@ -51,11 +58,10 @@ def check_answer(value):
     cycle_image()
 
     st.session_state.current_round += 1
-    
     st.session_state.score += (value == correct_neighbourhood)
 
 if not game_done:
-  selected_neighbourhood = st.selectbox('Which neighbourhood is this image located in?', (image_keys))
+  selected_neighbourhood = st.selectbox('Which neighbourhood is this image located in?', (df_images['NbName'].unique()))
   st.button("Confirm Neighbourhood", on_click=check_answer, args=(selected_neighbourhood,))
 
 # Panorama viewer
@@ -78,9 +84,9 @@ if not game_done:
 
 # Game Over display
 def reset_game():
-    st.session_state.image_index = 0
     st.session_state.score = 0
     st.session_state.current_round = 1
+    st.session_state.images_seen = []
 
 if game_done:
     st.header("Game Over")
