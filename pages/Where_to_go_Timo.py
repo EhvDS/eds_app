@@ -44,10 +44,13 @@ for index, row in filtered_data.iterrows():
         continue
 
     # Add a marker for each project at its location if it's in the filtered data
-    folium.Marker(
+    folium.CircleMarker(
         location=[latitude, longitude],
         popup=row['NAAMPROJECT'],
-        icon=folium.Icon(color='lightred', icon='circle', opacity=0.1, icon_size=(18, 18))
+        radius=5,
+        color='red',
+        fill=True,
+        fill_color='red'
     ).add_to(m)
 
 st.header("Kaart van Eindhoven met rode gebieden voor elk project")
