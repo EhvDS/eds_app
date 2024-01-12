@@ -45,6 +45,15 @@ def display_jeopardy_board():
                             # Store the selected option in the current state
                             st.session_state[state_key] = option
                             st.rerun() # Disgustingly re-render, to make sure the renderer is properly representing the changes made
+    st.markdown('')
+    st.markdown('')
+    st.markdown('')
+    with st.container():
+        st.subheader(":red[What is District Jeopardy?]", divider="red")
+        st.markdown("District Jeopardy is based on the popular TV show [Jeopardy!](https://en.wikipedia.org/wiki/Jeopardy!#Gameplay)  \n\
+                    The goal of the game is to answer data driven questions about the various districts in Eindhoven to try and earn the biggest prize possible!  \n\
+                    Keep in mind! Higher prize questions demand more knowledge of both Eindhoven and Data.")
+
 
 def get_value_range(values: Series, operation, error_margin_percentage):
     if (operation == "highest"):
@@ -88,7 +97,7 @@ def display_question(header: DeltaGenerator):
     def numeric_classification_question(district, feature, higher_operator):
         feature_string = f"area in m\N{SUPERSCRIPT TWO}" if feature == "area" else feature
         operator_string = "most" if higher_operator else "least"
-        header.title(f"What neighborhood has the :red[{operator_string} {feature_string}] in {district}")
+        header.title(f"In {district}, which neighborhood has the :red[{operator_string} {feature_string}]?")
 
         # prepare a dataframe for given question
         graph_df = ndf[ndf["district"] == district]
@@ -154,7 +163,7 @@ def display_question(header: DeltaGenerator):
             plt.bar(range(len(graph_df)), graph_df[feature], color=['red' if is_correct else 'black' for is_correct in graph_df['is_correct']])  # Show the barchart again, but only make the highest (correct) value red
 
             plt.xticks(range(len(graph_df)), graph_df['neighborhood'], rotation=90, ha="center", color="white") # When rotated between 0-90 degrees the text shifts away from the xticks...
-            plt.tick_params(axis='y', colors='white')
+            plt.tick_params(axis='both', colors='white')
             plt.gca().yaxis.set_major_formatter(StrMethodFormatter('{x:.0f}'))
             
             plt.title(f'Number of {feature_string} per neighborhood ({operator_string} highlighted)', color="white")
@@ -168,7 +177,7 @@ def display_question(header: DeltaGenerator):
             - 'highest': find the highest value.
         """
         feature_string = f"area in m\N{SUPERSCRIPT TWO}" if feature == "area" else feature
-        header.title(f"Give the :red[{operation}] value for :red[{feature_string}] in {district}")
+        header.title(f"What is the :red[{operation} {feature_string}] in {district}?")
         header.markdown(f"*Within a {error_margin_percentage}% median margin*")
 
         # prepare a dataframe for given question
@@ -233,7 +242,7 @@ def display_question(header: DeltaGenerator):
     def multi_numeric_identification_question(district, featureX, featureY):
         featureX_string = f"area in m\N{SUPERSCRIPT TWO}" if featureX == "area" else featureX
         featureY_string = f"area in m\N{SUPERSCRIPT TWO}" if featureY == "area" else featureY
-        header.title(f"What datapoint represents :red[{district}]")
+        header.title(f"Which labeled point corresponds to :red[{district}]?")
 
         # prepare a dataframe for given question
         graph_df = ddf.copy()
@@ -284,7 +293,7 @@ def display_question(header: DeltaGenerator):
             plt.scatter(graph_df[featureX], graph_df[featureY], s=0)
             # Add the visual char indicators
             for i, district in graph_df.iterrows():
-                plt.text(district[featureX], district[featureY], district['char'], fontsize=12, ha='center', va='center', color="red" if district["is_correct"] else "black")
+                plt.text(district[featureX], district[featureY], f"{district['char']} ({district['district']})", fontsize=12, ha='center', va='center', color="red" if district["is_correct"] else "black")
             plt.tick_params(axis='both', colors='white')
             plt.xticks(rotation=90)
             plt.xlabel(featureX_string, color="white")
@@ -295,7 +304,7 @@ def display_question(header: DeltaGenerator):
             st.pyplot(fig)
     def single_numeric_identification_question(district, feature):
         feature_string = f"area in m\N{SUPERSCRIPT TWO}" if feature == "area" else feature
-        header.title(f"Which :red[{feature_string}] record represents :red[{district}]")
+        header.title(f"Which labeled bar corresponds to :red[{district}]?")
 
         # prepare a dataframe for given question
         graph_df = ddf.copy()
@@ -337,7 +346,8 @@ def display_question(header: DeltaGenerator):
             fig = plt.figure(figsize=(8,5))
             fig.patch.set_facecolor('#0e1117') # Set the figure background to same as the page's background, lets hope it is not changed in the future
 
-            plt.bar(graph_df["char"], graph_df[feature], color=['red' if is_correct else 'black' for is_correct in graph_df['is_correct']])
+            plt.bar([f"{char} ({district})" for char, district in zip(graph_df["char"], graph_df["district"])], graph_df[feature], color=['red' if is_correct else 'black' for is_correct in graph_df['is_correct']])
+            plt.xticks(rotation=90)
             plt.tick_params(axis='both', colors='white')
             plt.ylabel(feature_string, color="white")
             plt.gca().yaxis.set_major_formatter(StrMethodFormatter('{x:.0f}'))
@@ -412,8 +422,8 @@ def main():
         """
         <style>
             [data-testid="column"] .stTextLabelWrapper { 
-            justify-content: center !important;
-        }
+                justify-content: center !important;
+            }
         </style>
         """,
         unsafe_allow_html=True,
