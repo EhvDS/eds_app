@@ -9,7 +9,6 @@ def main():
         page_title='Eindhoven Data Stories' ,
         page_icon='',   
         layout="wide",
-        theme="dark",
         initial_sidebar_state="expanded")
 
     st.title("Eindhoven Data Stories")
