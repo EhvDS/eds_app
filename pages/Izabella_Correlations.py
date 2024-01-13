@@ -16,7 +16,7 @@ from numpy import std
 from numpy.random import randn
 from numpy.random import seed
 from matplotlib import pyplot
-from IPython.display import display
+### from IPython.display import display  <-- Simona: not used
 from scipy import stats
 
 st.write('# Correlations in Eindhoven')
