@@ -17,7 +17,7 @@ from numpy.random import randn
 from numpy.random import seed
 from matplotlib import pyplot
 ### from IPython.display import display  <-- Simona: not used
-from scipy import stats
+### from scipy import stats <-- Simona: not used
 
 st.write('# Correlations in Eindhoven')
 st.markdown("*Made by Izabella Bogdanova*.")
