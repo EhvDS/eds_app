@@ -5,7 +5,7 @@ from streamlit_folium import folium_static
 
 
 
-df = pd.read_csv("data\data_timofey.csv")
+df = pd.read_csv("./data/data_timofey.csv")
 # data prep
 
 
