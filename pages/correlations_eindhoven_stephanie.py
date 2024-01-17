@@ -2,7 +2,6 @@ from os import write
 import streamlit as st
 import plotly.express as px
 import pandas as pd
-### import seaborn as sns <-- Simona: commented out because it causes a streamlit error. seaborn is not used in your code anyway :-)
 import matplotlib.pyplot as plt
 import streamlit.components.v1 as components
 import plotly.graph_objects as go
