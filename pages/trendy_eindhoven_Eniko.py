@@ -16,12 +16,14 @@ if variable == 'Aantal woningen' or variable == 'Inwoners' or variable == 'Perso
     size_ref = 500
 elif  variable == 'Gemiddeld elektriciteitsverbruik totaal':
     size_ref = 100
+    df = df[df['Gemiddeld elektriciteitsverbruik totaal'] != 0]
 elif variable == 'Bezoekt culturele voorstellingen %':
     size_ref = 2
 elif variable == 'Totaal aantal winkelpanden':
     size_ref = 5
 
 figLine = px.line(df, x='year', y=variable, title=variable + '  per year per neighborhood:', color='neighborhood')
+figLine.update_xaxes(type='category')
 
 st.plotly_chart(figLine)
 
