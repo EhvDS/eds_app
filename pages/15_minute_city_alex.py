@@ -17,6 +17,13 @@ st.subheader("Visualize and understand the connectivity between neighborhoods wi
 minutes = st.number_input("Enter the minutes:", min_value=2, max_value=30, step=1, value=10)
 threshold = minutes * 4 / 60 # Assuming the average walking speed is 4 km per hour
 
+# Add a select box for the mode of transportation
+transportation = st.selectbox("Select mode of transportation:", ("Walking", "Biking"))
+speed = 4 if transportation == "Walking" else 15  # Assuming the average biking speed is 15 km per hour
+
+threshold = minutes * speed / 60
+
+
 style_function = lambda x: {'fillColor': '#D9F0FF4D', 'color': '#D9F0FF4D'}
 
 
