@@ -45,7 +45,9 @@ langsmith==0.0.67
 markdown-it-py==3.0.0
 MarkupSafe==2.1.3
 marshmallow==3.20.1
+matplotlib==3.8.2
 mdurl==0.1.2
+mplcursors==0.5.3
 mpmath==1.3.0
 multidict==6.0.4
 mypy-extensions==1.0.0

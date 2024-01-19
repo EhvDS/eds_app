@@ -6,22 +6,16 @@ from matplotlib.colors import Normalize
 import matplotlib.cm as cm
 import numpy as np
 import matplotlib.lines as mlines
+import mplcursors
+
+# Global variable to store the cursor
+cursor = None
 
 # Read datasets
 df_num_houses = pd.read_csv('data/timed_data-NumberHouses.csv', delimiter=';')
 df_population = pd.read_csv('data/timed_data-Population.csv', delimiter=';')
 df_health = pd.read_csv('data/timed_data-Health-bad-to-worst.csv', delimiter=';')
 df_woz = pd.read_csv('data/timed_data-WOZ.csv', delimiter=';')
-
-# Load the watermark image
-watermark_path = './images/eindhoven-logo.png'
-watermark_image = plt.imread(watermark_path)
-
-# Function to add watermark image
-def add_watermark(ax, zoom=0.1, position=(0.5, 0.5)):
-    im = OffsetImage(watermark_image, zoom=zoom, alpha=0.5)
-    imbox = AnnotationBbox(im, position, frameon=False, box_alignment=(0.5, 0.5))
-    ax.add_artist(imbox)
 
 # Cleaning and preprocessing the data
 df_num_houses.rename(columns={'NbName': 'Neighborhood'}, inplace=True)
@@ -104,6 +98,10 @@ merged_data['WOZ_normalized'] = normalize(merged_data['WOZ']) * 100  # Scale fro
 merged_data['Health_Percentage'] = (merged_data['Health'] / merged_data['Population']) * 100
 health_norm = merged_data['Health_Percentage']**0.3
 health_norm = Normalize(vmin=health_norm.min(), vmax=health_norm.max())
+# normalize the health percentage and round to 3 decimals
+merged_data['Health_Percentage_Norm'] = (merged_data['Health_Percentage'] / merged_data['Population']) * 100
+merged_data['Health_Percentage_Norm'] = merged_data['Health_Percentage_Norm'].round(3)
+
 
 # Create a color map
 cmap = cm.RdYlGn_r  # Red to Green reversed color map
@@ -136,11 +134,12 @@ def create_legends(ax):
     ax.add_artist(health_legend)
 
 # Custom scaling function
-def custom_scale(value, a=0.3):
+def custom_scale(value, a=0.35):
     return (value ** 2) * a
 
 # Function to update the scatter plot for each year
 def update(year):
+    global cursor
     ax.clear()
     year_data = merged_data[merged_data['Year'] == year]
     
@@ -154,10 +153,7 @@ def update(year):
     colors = cmap(health_norm(health_percentage_norm))
 
     # Scatter plot for the actual data
-    scatter = ax.scatter(year_data['NumberHouses'], year_data['Population'], s=sizes, c=colors, alpha=0.6)
-    
-    # Add watermark
-    add_watermark(ax) 
+    scatter = ax.scatter(year_data['NumberHouses'], year_data['Population'], s=sizes, c=colors, alpha=0.7)
     
     # Set titles and labels
     ax.set_title(f'Eindhoven Neighborhoods: Number of Houses vs Population ({year})')
@@ -172,11 +168,26 @@ def update(year):
     # Create the legends
     create_legends(ax)
 
+     # Remove previous annotations
+    if cursor is not None:
+        cursor.remove()
+
+    # Add cursor that will show Neighborhood, Number of Houses, Population, Health, and WOZ on hover
+    cursor = mplcursors.cursor(scatter, hover=True)
+    cursor.connect(
+        "add", lambda sel: sel.annotation.set_text(
+            f'Neighborhood: {year_data.iloc[sel.target.index]["Neighborhood"]}\n'
+            f'Number of Houses: {year_data.iloc[sel.target.index]["NumberHouses"]}\n'
+            f'Population: {year_data.iloc[sel.target.index]["Population"]}\n'
+            f'Bad/Worst Health in percentage: {year_data.iloc[sel.target.index]["Health_Percentage_Norm"]}%\n'
+            f'Average WOZ worth: €{year_data.iloc[sel.target.index]["WOZ"]}.000,-'
+        )
+    )
 
 # Initially create the legends
 create_legends(ax)
 
 # Creating the animation
-ani = FuncAnimation(fig, update, frames=years, repeat=True, interval=2000)
+ani = FuncAnimation(fig, update, frames=years, repeat=True, interval=4000)
 
 plt.show()
