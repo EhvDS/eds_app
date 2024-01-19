@@ -1,23 +1,21 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd
-### import seaborn as sns <-- Simona: commented out because it causes a streamlit error. seaborn is not used in your code anyway :-)
+# import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
-### import pandas as pd <-- Simona: duplicate
+import seaborn as sns
 import numpy as np
-import pandas as pd
-### import sklearn as sk <-- Simona: not used
+import sklearn as sk
 import matplotlib
-### import matplotlib.pyplot as plt <-- Simona: duplicate
 from numpy import mean
 from numpy import std
-### import plotly.express as px <-- Simona: duplicate
+import plotly.express as px
 from numpy.random import randn
 from numpy.random import seed
 from matplotlib import pyplot
-### from IPython.display import display  <-- Simona: not used
-### from scipy import stats <-- Simona: not used
+# from IPython.display import display
+# from scipy import stats
 
 st.write('# Correlations in Eindhoven')
 st.markdown("*Made by Izabella Bogdanova*.")
