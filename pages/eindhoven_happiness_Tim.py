@@ -64,7 +64,7 @@ def app():
     st.title('Happiness in Eindhoven Neighbourhoods')
 
     # Load your dataset
-    df = pd.read_csv("data/tim_main_dataset.csv")  # Replace with your actual file path and name
+    df = pd.read_csv("../data/tim_main_dataset.csv")  # Replace with your actual file path and name
     df_top_30 = df.head(30)
     value_counts = df_top_30['Preferrable type of transport'].value_counts()
     st_map = create_map(df)
