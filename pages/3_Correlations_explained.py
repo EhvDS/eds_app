@@ -1,19 +1,11 @@
 import streamlit as st
 import plotly.express as px
 import pandas as pd
-# import seaborn as sns
-import matplotlib.pyplot as plt
-import plotly.express as px
-import seaborn as sns
 import numpy as np
-import sklearn as sk
-import matplotlib
 from numpy import mean
 from numpy import std
-import plotly.express as px
 from numpy.random import randn
 from numpy.random import seed
-from matplotlib import pyplot
 # from IPython.display import display
 # from scipy import stats
 
