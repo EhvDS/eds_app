@@ -2,7 +2,8 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 st.set_page_config(layout="wide")
-st.title('Eindhoven Neighborhoods puzzle')
+st.header('Eindhoven Neighborhoods puzzle')
+st.subheader('by Stijn Schellekens')
 
 iframe_html = """
 <div style="width: 100%; height: 1080px; display: flex; justify-content: center;">

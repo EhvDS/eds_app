@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import json
-import numpy as np
 import matplotlib.pyplot as plt
 from io import BytesIO
 
@@ -61,10 +60,11 @@ def create_map(df):
 
 # Streamlit app
 def app():
-    st.title('Happiness in Eindhoven Neighbourhoods')
+    st.header('Happiness in Eindhoven Neighbourhoods')
+    st.subheader('by Tymofii Katyshev')
 
     # Load your dataset
-    df = pd.read_csv("../data/tim_main_dataset.csv")  # Replace with your actual file path and name
+    df = pd.read_csv("data/tim_main_dataset.csv")  # Replace with your actual file path and name
     df_top_30 = df.head(30)
     value_counts = df_top_30['Preferrable type of transport'].value_counts()
     st_map = create_map(df)
