@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import folium
 from streamlit_folium import folium_static
-
+import numpy as np
 
 
 df = pd.read_csv("./data/data_timofey.csv")
@@ -10,7 +10,9 @@ df = pd.read_csv("./data/data_timofey.csv")
 
 
 # Streamlit App
-st.title("Cross-spatial districts")
+###st.title("Cross-spatial districts")
+st.header("Similar neighbourhoods")
+st.subheader("by Timofey Popov")
 
 col1, col2 = st.columns(2)
 
@@ -29,32 +31,35 @@ with col2:
     if avg_income_selected:
         minVal = df['AvgIncome'].min()
         maxVal = df["AvgIncome"].max()
-        avg_income_selected_score = st.slider("Select Average Income (Yearly)", min_value=minVal, max_value=maxVal, value=(minVal+maxVal)/2)
+        defVal = (minVal+maxVal)/2
+        st.write(minVal,maxVal,defVal)
+#       avg_income_selected_score = st.slider("Select Average Income (Yearly)", min_value=minVal, max_value=maxVal)
+        avg_income_selected_score = st.slider("Select Average Income (Yearly)", minVal, maxVal,float(defVal))
     
     if avg_house_value_selected:
         minVal = df['AvgHouseValue'].min()
         maxVal = df["AvgHouseValue"].max()
-        avg_house_value_selected_score = st.slider("Select Average House Value", min_value=minVal, max_value=maxVal, value=(minVal+maxVal)/2)
+        avg_house_value_selected_score = st.slider("Select Average House Value", minVal, maxVal,float((minVal+maxVal)/2))
 
     if num_shops_selected:
         minVal = df['NumberShops'].min()
         maxVal = df["NumberShops"].max()
-        num_shops_selected_score = st.slider("Select Number of shops nearby", min_value=minVal, max_value=maxVal, value=(minVal+maxVal)/2)
+        num_shops_selected_score = st.slider("Select Number of shops nearby", minVal, maxVal,float((minVal+maxVal)/2))
     
     if num_residents_selected:
         minVal = df['number of residents'].min()
         maxVal = df["number of residents"].max()
-        num_residents_selected_score = st.slider("Select Number of Residents", min_value=minVal, max_value=maxVal, value=(minVal+maxVal)/2)
+        num_residents_selected_score = st.slider("Select Number of Residents", minVal, maxVal,float((minVal+maxVal)/2))
 
     if percent_unhappy_selected:
         minVal = df['PctUnhappy'].min()
         maxVal = df["PctUnhappy"].max()
-        percent_unhappy_selected_score = st.slider("Select percent unhappy", min_value=minVal, max_value=maxVal, value=(minVal+maxVal)/2)
+        percent_unhappy_selected_score = st.slider("Select percent unhappy", minVal, maxVal,float((minVal+maxVal)/2))
     
     if score_good_life_selected:
         minVal = df['ScoreGoodLife'].min()
         maxVal = df["ScoreGoodLife"].max()
-        score_good_life_selected_score = st.slider("Select good life score", min_value=minVal, max_value=maxVal, value=(minVal+maxVal)/2)
+        score_good_life_selected_score = st.slider("Select good life score", minVal, maxVal,float((minVal+maxVal)/2))
 
 
 # Filter the DataFrame based on user selection

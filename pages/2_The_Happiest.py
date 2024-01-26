@@ -45,7 +45,7 @@ def create_map():
         normalized_value = (unhappiness - 1) / 11
         # Use a linear color gradient from green to yellow to red
         color_gradient = cm.LinearColormap(
-            ['green', 'yellow', 'red'], vmin=0, vmax=1)
+            ['green', 'orange', 'red'], vmin=0, vmax=1)
         return color_gradient(normalized_value)
 
     # Define a function to assign icons based on 'Unhappy people in %' values
@@ -88,9 +88,8 @@ def create_map():
                 'weight': 2,
                 'fillOpacity': 0.6,
             },
-            tooltip=tooltip_content,
-            icon=folium.Icon(color=color, icon=icon, icon_size=(
-                50, 50)).to_dict(),  # Change the numbers for adjusting the icon size
+            tooltip=tooltip_content
+            ### icon=folium.Icon(color=color, icon=icon, icon_size=(50, 50)).to_dict(),  # Change the numbers for adjusting the icon size <-- ERROR, icon not an argument in GeoJson, needs to be added as a separate layer
         ).add_to(m)
 
     # Save the map to an HTML file
@@ -100,7 +99,8 @@ def create_map():
 
 
 # Streamlit code
-st.header("Happiness Map of Eindhoven")
+st.header("The Happiness Map of Eindhoven")
+st.subheader("by Momchil Valkov")
 st.write("""
     This interactive map offers an engaging visualization of neighborhood happiness in Eindhoven, utilizing official city data from 2022.  
             The map uses emoticons as indicators of happiness levels, rather than displaying raw percentages:

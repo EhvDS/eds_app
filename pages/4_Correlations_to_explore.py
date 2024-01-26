@@ -13,11 +13,12 @@ df_cor = pd.read_csv('./data/mostrecent_data_stephanie.csv')
 df_cor = df_cor.fillna(0)
 df_cor = df_cor.replace('.' , 0)
 df_scatter = df_cor
-st.write("# Correlations in Eindhoven: discover yourself!")
-st.write("### Made by Stèphanie Smits")
+st.header("Correlations in Eindhoven: discover yourself!")
+st.subheader("by Stèphanie Smits")
 st.write('##')
 st.write("The correlation coefficient is a measure of the closeness of association of the points in a scatter plot to a linear regression line based on those points. Possible values of the correlation coefficient range from -1 to +1, with -1 indicating a perfectly negative association and +1 indicating a perfectly positive association between two data points. A correlation coefficient close to 0 suggests little, if any, association.")
-st.image("https://www.c-sharpcorner.com/article/how-to-get-correlation-coefficient-in-power-bi/Images/How%20to%20Get%20Correlation%20Coefficient%20in%20Power%20BI.png")
+st.image("images/corcoefs.png",width=400)
+st.markdown("Source: [The Correlation Coefficient](https://sphweb.bumc.bu.edu/otlt/MPH-Modules/PH717-QuantCore/PH717-Module9-Correlation-Regression/PH717-Module9-Correlation-Regression4.html)")
 st.write('##')
 st.write("On this page, multiple data points are collected about the living circumstances in Eindhoven. Play with it yourself and see what interesting correlations you can find!")
 st.write('##')
@@ -33,15 +34,15 @@ cols = ['number of residents', 'ScoreDiversity', 'NumberHouseholds',
  
 y_option = st.selectbox(
  'Select your first attribute',
-  (cols))
+  (cols),index=5)
 
-st.write('You selected:', y_option)
+##st.write('You selected:', y_option)
 
 x_option = st.selectbox(
  'Select your second attribute',
-  (cols))
+  (cols),index=3)
 
-st.write('You selected:', x_option)
+##st.write('You selected:', x_option)
 
 
 
@@ -82,4 +83,3 @@ fig = px.scatter(data_frame=df_scatter, x=x_option, y=y_option, color="DistrictN
 
 st.plotly_chart(fig)
 
-st.markdown("Source: [The Correlation Coefficient](https://sphweb.bumc.bu.edu/otlt/MPH-Modules/PH717-QuantCore/PH717-Module9-Correlation-Regression/PH717-Module9-Correlation-Regression4.html)")

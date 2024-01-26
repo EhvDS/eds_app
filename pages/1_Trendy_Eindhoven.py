@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
-import statsmodels.api as sm
+### import statsmodels.api as sm <-- not needed ?
 
 # Loading gender and age data
 @st.cache_data
@@ -163,7 +163,8 @@ def population_pyramid(df):
 
 # In the main function, all functions are called and we create the layout of the app. We have a title, a description and selectbox to choose which category will be visualized. 
 def main():
-    st.title('Trends in Eindhoven 📈')
+    st.header('Trends in Eindhoven 📈')
+    st.subheader('by Iris van den Boomen');
     df_gender_age  = load_gender_age_data()
 
     # After the option is selected, the corresponding function is called

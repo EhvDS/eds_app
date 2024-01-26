@@ -17,8 +17,8 @@ from matplotlib import pyplot
 # from IPython.display import display
 # from scipy import stats
 
-st.write('# Correlations in Eindhoven')
-st.markdown("*Made by Izabella Bogdanova*.")
+st.header('Interesting correlations in Eindhoven')
+st.subheader("by Izabella Bogdanova")
 
 st.caption('# What is correlation?')
 st.markdown('Correlation coefficients quantify the association between variables or features of a dataset.')
@@ -72,8 +72,6 @@ st.plotly_chart(fig)
 fig = px.scatter(df,
 x="number of residents",
 y="NumberHouseholds",
-trendline="ols",
-trendline_color_override="red",
 title="Number of Residents VS Number Households")
 # Plot!
 st.plotly_chart(fig)
@@ -97,8 +95,6 @@ st.plotly_chart(fig)
 fig = px.scatter(df,
 x="PctEconomicallyIndependent",
 y="AvgIncome",
-trendline="ols",
-trendline_color_override="red",
 title="PctEconomicallyIndependent VS AvgIncome")
 # Plot!
 st.plotly_chart(fig)
@@ -121,8 +117,6 @@ st.plotly_chart(fig)
 fig = px.scatter(df,
 x="PctFeelsUnsafe",
 y="PctComplainsNoise",
-trendline="ols",
-trendline_color_override="red",
 title="PctFeelsUnsafe VS PctComplainsNoise")
 # Plot!
 st.plotly_chart(fig)
@@ -146,8 +140,6 @@ st.plotly_chart(fig)
 fig = px.scatter(df,
 x="ScoreSocialCohesion",
 y="PctUnhappy",
-trendline="ols",
-trendline_color_override="red",
 title="ScoreSocialCohesion VS PctUnhappy")
 # Plot!
 st.plotly_chart(fig)
@@ -173,8 +165,6 @@ st.plotly_chart(fig)
 fig = px.scatter(df,
 x="PctHighEducation",
 y="AvgIncome",
-trendline="ols",
-trendline_color_override="red",
 title="PctHighEducation VS AvgIncome")
 # Plot!
 st.plotly_chart(fig)
@@ -200,8 +190,6 @@ st.plotly_chart(fig)
 fig = px.scatter(df,
 x="PctHighEducation",
 y="PctEconomicallyIndependent",
-trendline="ols",
-trendline_color_override="red",
 title="PctHighEducation VS PctEconomicallyIndependent")
 # Plot!
 st.plotly_chart(fig)
@@ -227,8 +215,8 @@ st.plotly_chart(fig)
 fig = px.scatter(df,
 x="PctComplainsAQ",
 y="PctComplainsNoise",
-trendline="ols",
-trendline_color_override="red",
+#trendline="ols",
+#trendline_color_override="red",
 title="PctComplainsAQ VS PctComplainsNoise")
 # Plot!
 st.plotly_chart(fig)
@@ -254,8 +242,8 @@ st.plotly_chart(fig)
 fig = px.scatter(df,
 x="Distance2Trainstation",
 y="Distance2Cinema",
-trendline="ols",
-trendline_color_override="red",
+#trendline="ols",
+#trendline_color_override="red",
 title="Distance2Trainstation VS Distance2Cinema")
 # Plot!
 st.plotly_chart(fig)

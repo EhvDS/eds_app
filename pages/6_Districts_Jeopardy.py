@@ -432,8 +432,8 @@ def main():
     points_column.header(f"prize: :red[${st.session_state[points_key]}]")
     
     if (st.session_state[state_key] == None):
-        title_column.title("Eindhoven District Jeopardy")
-        title_column.markdown("*Made by Thomas Van der Molen 🔧*")
+        title_column.header("Eindhoven District Jeopardy")
+        title_column.subheader("by Thomas Van der Molen 🔧")
 
         # Game is not within a current option, so show the board overview
         display_jeopardy_board()
