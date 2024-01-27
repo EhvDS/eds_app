@@ -63,7 +63,8 @@ def main():
         st.markdown(f'<p style="color:#000;font-size:24px;">{st.session_state.modal_text}</p>', unsafe_allow_html=True)
 
   # Header section
-  st.title("Geoguessr in Eindhoven")
+  st.header("Geoguessr in Eindhoven")
+  st.subheader("by Kevin Geertjens")
   st.markdown("""Play Geoguessr with locations throughout Eindhoven: You will be shown several 360 degree pictures, and you have to guess which neighbourhood in Eindhoven the pictures 
                 were taken in. You can pan and zoom the image to look around.""")
 

@@ -94,7 +94,7 @@ def restart():
     st.session_state.cur_image = get_random_image(df_images)
 
 def load_regions():
-    gdf = gpd.read_file("Data/buurten.shp")
+    gdf = gpd.read_file("data/buurten_geoguessr_max.shp")
     gdf = gdf.groupby(st.session_state.diff)['geometry'].apply(unary_union).reset_index()
     gdf[st.session_state.diff] = gdf[st.session_state.diff].str.replace('Wijk', '', regex=False)
     gdf.crs = "EPSG:4326"
@@ -104,7 +104,8 @@ gdf, df_images = init()
 col1, col2 = st.columns(2, gap="large")
 
 with col1:
-    st.title("GeoGuessr")
+    st.header("GeoGuessr")
+    st.subheader("by Max ")
 with col2:
     if st.session_state.cur_round == 1:
         opt = st.selectbox(
