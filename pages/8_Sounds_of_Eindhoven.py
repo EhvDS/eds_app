@@ -3,7 +3,7 @@ import pandas as pd
 import pydeck as pdk
 
 # Load data
-df = pd.read_csv("C:/Users/velim/Desktop/UNI\Semester 7/eds_app/data/Eindhoven_by_night_data_Mat.csv")
+df = pd.read_csv("data/Eindhoven_by_night_data_Mat.csv")
 
 def categorize_sound_level(value):
     if value < 50:
@@ -83,6 +83,7 @@ with col2:
 
 # Text below the map
 st.header("Colorful Insights")
+st.subheader("by Matthew da Silva")
 st.write("""
     Each sensor on the map is like a mini artist, painting the city in sounds. 
     A splash of green shows areas where you can hear a pin drop (under 50 dB), 
