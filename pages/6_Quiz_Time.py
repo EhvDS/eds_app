@@ -182,7 +182,10 @@ colormap2.add_to(m2)
 
 
 # ========================= DOM elements / Page layout =========================
-st.title('Quiz Time!')
+st.header('Quiz Time!')
+st.subheader('by David Lima Ruas van Rijthoven')
+st.markdown('#')
+
 st.subheader(f"Score: {sum(1 for x in st.session_state['question_scores'] if x == 1)}/{number_of_questions} Correct")
 st.subheader(f"Question {st.session_state['question_page']+1}:")
 st.header(questions[st.session_state['question_page']])

@@ -4,7 +4,8 @@ import pandas as pd
 import plotly.graph_objects as go
 
 df = pd.read_csv('./data/trendy_eindhoven_data_Eniko.csv')
-st.write("# Explore trends in Eindhoven")
+st.header("Explore trends in Eindhoven")
+st.subheader('by Enikö Kakas')
 
 variable = st.selectbox("Select a variable:", ['Aantal woningen', 'Inwoners', 'Gemiddeld elektriciteitsverbruik totaal', 'Verplaatst zich meestal per fiets %',
                                               'Personenauto\'s totaal', 'Doet aan vrijwilligerswerk', 'Sport wekelijks (18-84 jaar)', 

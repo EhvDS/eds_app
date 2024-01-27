@@ -63,7 +63,8 @@ r = pdk.Deck(
 #-------------------------------------------------------------------------
 
 # Title of the app
-st.title("Urban Symphony: Eindhoven's 30-Day Sound Story")
+st.header("Urban Symphony: Eindhoven's 30-Day Sound Story")
+st.subheader("by Matthew da Silva")
 
 # Use columns to place text beside the map
 col1, col2 = st.columns([1, 2])
@@ -83,7 +84,6 @@ with col2:
 
 # Text below the map
 st.header("Colorful Insights")
-st.subheader("by Matthew da Silva")
 st.write("""
     Each sensor on the map is like a mini artist, painting the city in sounds. 
     A splash of green shows areas where you can hear a pin drop (under 50 dB), 
