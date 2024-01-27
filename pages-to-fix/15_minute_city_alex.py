@@ -10,8 +10,10 @@ from streamlit_folium import folium_static
 df_neighborhoods = pd.read_csv("./data/buurten_data_alex.csv", sep=';')
 df_neighborhoods[['latitude', 'longitude']] = df_neighborhoods['geo_point_2d'].str.split(",", expand=True).astype(float)
 
-st.title("15 Minutes City")
-st.subheader("Visualize and understand the connectivity between neighborhoods within a specified walking or biking time")
+st.header("The 15 Minutes City")
+st.subheader("by Alex Svetoslavov")
+
+st.write("Visualize and understand the connectivity between neighborhoods within a specified walking or biking time")
 
 # Add an input for the minutes
 minutes = st.number_input("Enter the minutes:", min_value=2, max_value=30, step=1, value=10)

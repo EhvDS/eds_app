@@ -2,7 +2,9 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 st.set_page_config(layout="wide")
-st.title('Eindhoven Neighborhoods puzzle')
+st.header('Eindhoven square puzzle')
+st.subheader('by Rob Rutjes')
+
 st.write('Try to solve the puzzle by dragging the pieces to their correct place.')
 st.write('Once the puzzle is correctly solved, you get a pop-up message.')
 

@@ -14,7 +14,11 @@ unique_prijsklasse = data['PRIJSKLASSE'].unique()
 unique_projectfase = data['PROJECTFASE'].unique()
 unique_woningtype = data['WONINGTYPE'].unique()
 
-st.header('Filters')
+
+st.header('Bouwprojecten')
+st.subheader('by Timo Oerlemans')
+
+st.subheader('Filters')
 # Filter projects based on selected filters
 selected_prijsklasse = st.multiselect('Selecteer prijsklasse', list(unique_prijsklasse))
 selected_projectfase = st.multiselect('Selecteer projectfase', list(unique_projectfase))
@@ -53,7 +57,7 @@ for index, row in filtered_data.iterrows():
         fill_color='red'
     ).add_to(m)
 
-st.header("Kaart van Eindhoven met rode gebieden voor elk project")
+st.subheader("Kaart van Eindhoven met rode gebieden voor elk project")
 st.markdown("Elk gebied vertegenwoordigt een naamproject in de dataset.")
 folium_static(m)
 
